@@ -1,0 +1,6 @@
+ALTER TABLE ws_customer_vehicles ADD COLUMN merk VARCHAR(100) DEFAULT NULL;
+ALTER TABLE ws_customer_vehicles ADD COLUMN type VARCHAR(100) DEFAULT NULL;
+ALTER TABLE ws_customer_vehicles ADD COLUMN police_number VARCHAR(100) DEFAULT NULL;
+ALTER TABLE ws_customer_vehicles ADD COLUMN chasis_number VARCHAR(100) DEFAULT NULL;
+ALTER TABLE ws_customer_vehicles ADD COLUMN color VARCHAR(100) DEFAULT NULL;
+ALTER TABLE ws_customer_vehicles ADD COLUMN year VARCHAR(100) DEFAULT NULL;

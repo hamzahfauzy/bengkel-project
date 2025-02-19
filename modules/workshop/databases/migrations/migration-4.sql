@@ -1,0 +1,1 @@
+ALTER TABLE ws_services ADD COLUMN vehicle_id INT DEFAULT NULL;
