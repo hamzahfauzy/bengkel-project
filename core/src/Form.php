@@ -154,13 +154,31 @@ class Form
                 $obj_array = explode(',',$options);
                 $options = $obj_array[0];
 
+                $last_params = array_slice($obj_array, 2);
+                $last_params = implode(',',$last_params);
+
+
+                $clause = "$obj_array[1] = $index";
+
                 $conn = conn();
                 $db   = new Database($conn);
-                $data = $db->single($options,[
-                    $obj_array[1] => $index
-                ]);
-                return $data->{$obj_array[2]};
+                $db->query = "SELECT $obj_array[1] as id, $last_params as value FROM `$options` WHERE $clause";
+                $data = $db->exec('single');
+                return $data->value;
             }
+
+            // if(substr($type, 8,3) == 'obj')
+            // {
+            //     $obj_array = explode(',',$options);
+            //     $options = $obj_array[0];
+
+            //     $conn = conn();
+            //     $db   = new Database($conn);
+            //     $data = $db->single($options,[
+            //         $obj_array[1] => $index
+            //     ]);
+            //     return $data->{$obj_array[2]};
+            // }
         }
 
         if(substr($type,0,8) == 'checkbox')

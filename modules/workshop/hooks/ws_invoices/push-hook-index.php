@@ -14,4 +14,4 @@ Route::additional_allowed_routes([
 ]);
 
 Page::setTitle(__("workshop.label.$record_type"));
-Page::setActive("workshop.transactions.$record_type");
+Page::setActive("workshop.invoices.$record_type");

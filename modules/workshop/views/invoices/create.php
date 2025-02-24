@@ -28,14 +28,6 @@ $attr  = ['class'=>"form-control"];
                             <input type="text" name="ws_invoices[total_price]" class="form-control" value="" readonly>
                         </div>
                     </div>
-                    <?php if($record_type == 'SALES'): ?>
-                    <div class="row mb-3">
-                        <label class="mb-2 col-4">Total Payment</label>
-                        <div class="col-8">
-                            <input type="text" name="ws_invoices[total_payment]" class="form-control" value="" data-type="currency">
-                        </div>
-                    </div>
-                    <?php endif ?>
                 </div>
                 <div class="col-12 col-md-6">
                     <div class="row mb-3">

@@ -22,5 +22,8 @@ return [
     'procurement' => 'Procurement',
     'marketing' => 'Marketing',
     'templates' => 'Templates',
-    'campaigns' => 'Campaigns'
+    'campaigns' => 'Campaigns',
+    'payments' => 'Payments',
+    'tasks' => 'Tasks',
+    'inspections' => 'Inspections',
 ];

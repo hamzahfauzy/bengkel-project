@@ -56,7 +56,9 @@
                         <th>Price</th>
                         <th>Qty</th>
                         <th>Sub Total</th>
-                        <th>Other</th>
+                        <?php if($invoice->record_type == 'SALES'): ?>
+                        <th>Other Information</th>
+                        <?php endif ?>
                     </tr>
                 </thead>
                 <tbody>
@@ -67,6 +69,7 @@
                         <td><?=number_format($item->base_price)?></td>
                         <td><?=number_format($item->qty)?></td>
                         <td><?=number_format($item->final_price)?></td>
+                        <?php if($invoice->record_type == 'SALES'): ?>
                         <td>
                             <?php if($item->employee_name && $item->vehicle_name): ?>
                             <?= $item->employee_name .' - '. $item->vehicle_name?>
@@ -77,6 +80,7 @@
                             <?php endif ?>
 
                         </td>
+                        <?php endif ?>
                     </tr>
                     <?php endforeach ?>
                 </tbody>

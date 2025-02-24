@@ -28,12 +28,12 @@ if(Request::isMethod('POST'))
     $data['total_qty'] = array_sum(array_column($items, 'qty'));
     $data['total_discount'] = 0;
     $data['final_price'] = $data['total_price'];
+    $data['total_payment'] = $data['total_price'];
     $data['created_by'] = auth()->id;
     $order = $db->insert($tableName, $data);
 
     foreach($items as $index => $item)
     {
-        $item['base_price'] = intval($item['base_price']);
         $item['invoice_id'] = $order->id;
         $item['total_price'] = $item['base_price']*$item['qty'];
         $item['total_discount'] = 0;
@@ -45,46 +45,47 @@ if(Request::isMethod('POST'))
         $db->insert('ws_product_logs', [
             'product_id' => $item->product_id,
             'amount' => $item->qty,
-            'record_type' => 'OUT',
+            'record_type' => 'IN',
             'description' => $order->code
         ]);
     }
 
     // create journals
-    $db->insert('ws_finance_journals', [
-        'code' => $order->code,
-        'amount' => $order->final_price,
-        'description' => 'sales #'.$order->code,
-        'record_type' => 'IN',
-        'created_by' => auth()->id
-    ]);
+    // $db->insert('ws_finance_journals', [
+    //     'code' => $order->code,
+    //     'amount' => $order->final_price,
+    //     'description' => 'procurement #'.$order->code,
+    //     'record_type' => 'OUT',
+    //     'created_by' => auth()->id
+    // ]);
 
-    set_flash_msg(['success'=>"Sales saved"]);
+    set_flash_msg(['success'=>"Procurement saved"]);
 
-    header('location:'.routeTo('workshop/transactions/detail', ['code' => $data['code']]));
+    header('location:'.routeTo('workshop/invoices/detail', ['code' => $data['code']]));
     die();
 }
 
-$db->query = "SELECT COUNT(*) as `counter` FROM ws_invoices WHERE created_at LIKE '%".date('Y-m')."%' AND record_type = 'SALES'";
+$db->query = "SELECT COUNT(*) as `counter` FROM ws_invoices WHERE created_at LIKE '%".date('Y-m')."%' AND record_type = 'PROCUREMENT'";
 $counter = $db->exec('single')?->counter ?? 0;
 
 $counter = sprintf("%05d", $counter+1);
-$code    = 'INV' . date('Ym'). $counter;
+$code    = 'PROC' . date('Ym'). $counter;
 
 $db->query = "SELECT 
                 ws_products.*, 
-                CONCAT('(',ws_products.record_type,') ', ws_products.name,' - ',ws_categories.name) name,
+                CONCAT(ws_products.name,' - ',ws_categories.name) name,
                 ws_product_prices.amount price
               FROM ws_products 
               LEFT JOIN ws_categories ON ws_categories.id = ws_products.category_id
-              LEFT JOIN ws_product_prices ON ws_product_prices.product_id = ws_products.id AND ws_product_prices.status = 'ACTIVE'";
+              LEFT JOIN ws_product_prices ON ws_product_prices.product_id = ws_products.id AND ws_product_prices.status = 'ACTIVE'
+              WHERE ws_products.record_type = 'SPARE PART'";
 $products = $db->exec('all');
 
 $customers = $db->all('ws_customers');
 
 // page section
-$title = 'Create Sales';
-Page::setActive("workshop.transactions.sales");
+$title = 'Create Procurement';
+Page::setActive("workshop.invoices.procurement");
 Page::setTitle($title);
 Page::setModuleName($title);
 Page::setBreadcrumbs([
@@ -94,7 +95,7 @@ Page::setBreadcrumbs([
     ],
     [
         'url' => '#',
-        'title' => 'Sales'
+        'title' => 'Procurement'
     ],
     [
         'title' => $title
@@ -124,6 +125,6 @@ Page::pushFoot("<script>$('.select2insidemodal').select2({dropdownParent: $('#it
 
 Page::pushHook('create');
 
-$record_type = 'SALES';
+$record_type = 'PROCUREMENT';
 
-return view('workshop/views/transactions/create', compact('error_msg','old','tableName','code','products','customers','record_type'));
+return view('workshop/views/invoices/create', compact('error_msg','old','tableName','code','products','customers','record_type'));

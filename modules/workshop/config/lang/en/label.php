@@ -25,5 +25,10 @@ return [
     'transaction service' => 'Transaction Service',
     'presence' => 'Presence',
     'leave' => 'Leave',
-    'ws_employee_presences' => 'Data'
+    'ws_employee_presences' => 'Data',
+    'ws_payments' => 'Payments',
+    'approve' => 'Approve',
+    'print' => 'Print',
+    'ws_inspections' => 'Inspections',
+    'ws_services' => 'Services',
 ];

@@ -43,7 +43,7 @@ if(Request::isMethod('POST'))
 
 // page section
 $title = 'Detail';
-Page::setActive("workshop.transactions.detail");
+Page::setActive("workshop.invoices.".strtolower($invoice->record_type));
 Page::setTitle($title);
 Page::setModuleName($title);
 Page::setBreadcrumbs([
@@ -65,4 +65,4 @@ Page::pushHead('<style>.select2,.select2-selection{height:38px!important;} .sele
 Page::pushFoot('<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>');
 Page::pushFoot("<script>$('.select2insidemodal').select2({dropdownParent: $('#employeeModal .modal-body')});$('.select2insidemodal2').select2({dropdownParent: $('#customerModal .modal-body')});</script>");
 
-return view('workshop/views/transactions/detail', compact('error_msg','success_msg','old','invoice','employees','vehicles'));
+return view('workshop/views/invoices/detail', compact('error_msg','success_msg','old','invoice','employees','vehicles'));

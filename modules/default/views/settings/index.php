@@ -45,10 +45,6 @@
             <div class="form-group mb-3">
                 <label class="mb-2"><?=$label?></label>
                 <?= \Core\Form::input($type, $fieldname, $attr) ?>
-                <?php if($label == 'Code Kecamatan Asal'){
-                    echo '<a href="https://github.com/andrewsoebagoes/Code-Daerah-RajaOngkir/blob/master/db_rajaongkir.sql" target="_blank">Lihat Kode Kecamatan</a>
-                    ';
-                } ?>
             </div>
             <?php endforeach ?>
             <div class="form-group mt-3">

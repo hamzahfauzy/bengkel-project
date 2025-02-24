@@ -1,153 +1,16 @@
 <?php 
 
 return [
-    'ws_customers' => [
-        'name' => [
-            'label' => 'Name',
-            'type' => 'text'
-        ],
-        'phone' => [
-            'label' => 'Phone',
-            'type' => 'text'
-        ],
-        'address' => [
-            'label' => 'Address',
-            'type' => 'textarea'
-        ],
-    ],
-    'ws_employees' => [
-        'name' => [
-            'label' => 'Name',
-            'type' => 'text'
-        ],
-        'phone' => [
-            'label' => 'Phone',
-            'type' => 'text'
-        ],
-        'address' => [
-            'label' => 'Address',
-            'type' => 'textarea'
-        ],
-        'record_type' => [
-            'label' => 'Type',
-            'type' => 'options:REGULAR|MECHANIC'
-        ],
-    ],
-    'ws_categories' => [
-        'name' => [
-            'label' => 'Name',
-            'type' => 'text'
-        ],
-        'record_type' => [
-            'label' => 'Type',
-            'type' => 'options:SPARE PART|SERVICE'
-        ],
-    ],
-    'ws_products' => [
-        'category_id' => [
-            'label' => 'Category',
-            'type' => 'options-obj:ws_categories,id,name'
-        ],
-        'name' => [
-            'label' => 'Name',
-            'type' => 'text'
-        ],
-        'description' => [
-            'label' => 'Description',
-            'type' => 'textarea'
-        ],
-        'supplier_name' => [
-            'label' => 'Supplier',
-            'type' => 'text'
-        ],
-        // 'record_type' => [
-        //     'label' => 'Type',
-        //     'type' => 'options:SPARE PART|SERVICE'
-        // ],
-    ],
-    'ws_customer_vehicles' => [
-        'customer_id' => [
-            'label' => 'Customer',
-            'type' => 'options-obj:ws_customers,id,name'
-        ],
-        'name' => [
-            'label' => 'Name',
-            'type' => 'text'
-        ],
-        'description' => [
-            'label' => 'Description',
-            'type' => 'textarea'
-        ],
-        'merk' => [
-            'label' => 'Merk',
-            'type' => 'text'
-        ],
-        'type' => [
-            'label' => 'Tipe',
-            'type' => 'text'
-        ],
-        'police_number' => [
-            'label' => 'No. Polisi',
-            'type' => 'text'
-        ],
-        'chasis_number' => [
-            'label' => 'No. Rangka Mesin',
-            'type' => 'text'
-        ],
-        'color' => [
-            'label' => 'Warna',
-            'type' => 'text'
-        ],
-        'year' => [
-            'label' => 'Tahun',
-            'type' => 'text'
-        ],
-    ],
-    'ws_product_prices' => [
-        'product_id' => [
-            'label' => 'Product',
-            'type' => 'options-obj:ws_products,id,name'
-        ],
-        'amount' => [
-            'label' => 'Amount',
-            'type' => 'number'
-        ],
-        'status' => [
-            'label' => 'Status',
-            'type' => 'text'
-        ]
-    ],
-    'ws_invoices' => [
-        'customer_id' => [
-            'label' => 'Customer',
-            'type' => 'options-obj:ws_customers,id,name'
-        ],
-        'code' => [
-            'label' => 'Invoice No.',
-            'type' => 'text'
-        ],
-        'total_item' => [
-            'label' => 'Total Items',
-            'type' => 'number'
-        ],
-        'total_qty' => [
-            'label' => 'Total Qty',
-            'type' => 'number'
-        ],
-        'final_price' => [
-            'label' => 'Final Price',
-            'type' => 'number'
-        ],
-        'total_payment' => [
-            'label' => 'Total Payment',
-            'type' => 'number'
-        ],
-        // 'status' => [
-        //     'label' => 'Status',
-        //     'type' => 'text'
-        // ],
-        '_userstamp' => true
-    ],
+    'ws_customers' => require 'tablefields/ws_customers.php',
+    'ws_employees' => require 'tablefields/ws_employees.php',
+    'ws_categories' => require 'tablefields/ws_categories.php',
+    'ws_products' => require 'tablefields/ws_products.php',
+    'ws_customer_vehicles' => require 'tablefields/ws_customer_vehicles.php',
+    'ws_product_prices' => require 'tablefields/ws_product_prices.php',
+    'ws_invoices' => require 'tablefields/ws_invoices.php',
+    'ws_payments' => require 'tablefields/ws_payments.php',
+    'ws_inspections' => require 'tablefields/ws_inspections.php',
+    'ws_services' => require 'tablefields/ws_services.php',
     'ws_order_items' => [
         'invoice_id',
         'product_id',
@@ -243,10 +106,6 @@ return [
             'label' => 'Employee',
             'type' => 'options-obj:ws_employees,id,name'
         ],
-        // 'record_type' => [
-        //     'label' => 'Type',
-        //     'type' => 'options:PRESENCE|LEAVE'
-        // ],
         'record_status' => [
             'label' => 'Status',
             'type' => 'options:APPROVE|DECLINE'
