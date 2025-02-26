@@ -11,6 +11,7 @@ $invoice->customer = $db->single('ws_customers',['id' => $invoice->customer_id])
 $db->query = "SELECT 
                 ws_invoice_items.*, 
                 ws_products.name product_name,
+                ws_products.unit product_unit,
                 ws_products.record_type product_type,
                 ws_employees.name employee_name,
                 CONCAT(ws_customer_vehicles.name,' - ',ws_customer_vehicles.police_number) vehicle_name

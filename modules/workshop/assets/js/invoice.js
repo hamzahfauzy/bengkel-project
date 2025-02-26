@@ -11,6 +11,7 @@ $('.add-item-button').click(function(){
     const data = {
         key:items.length+1,
         name: selectedData.product,
+        unit: selectedData.product.dataset.unit,
         qty: 1,
         price: parseInt(selectedItem.product.dataset.price),
         total_price: parseInt(selectedItem.product.dataset.price),
@@ -26,6 +27,7 @@ $('.add-item-button').click(function(){
                 </td>
                 <td>${data.name}</td>
                 <td>${record_type == 'PROCUREMENT' ? `<input type="text" class="form-control price-input" data-type='currency' name="items[${items.length}][base_price]" value="${format_number(data.price)}" data-key="${items.length+1}">` : format_number(data.price)}</td>
+                <td>${data.unit}</td>
                 <td><input type="number" class="form-control qty-input" style="width:100px" name="items[${items.length}][qty]" value="${data.qty}" data-key="${items.length+1}"></td>
                 <td id="price-${items.length+1}">${format_number(data.price*data.qty)}</td>
                 <td><button class="btn btn-sm btn-danger remove-item-button" type="button" data-target="#item_${items.length+1}" data-key="${items.length+1}"><i class="fas fa-trash"></i></button></td>

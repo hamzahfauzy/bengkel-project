@@ -36,11 +36,12 @@
         <br>
             <table width="100%" border="1" cellspacing="0" cellpadding="5">
                 <tr>
-                    <td colspan="6"><h4 style="margin:0">SPARE PART</h4></td>
+                    <td colspan="7"><h4 style="margin:0">SPARE PART</h4></td>
                 </tr>
                 <tr>
                     <th>No</th>
                     <th>Nama Barang</th>
+                    <th>Satuan</th>
                     <th>Qty</th>
                     <th>Harga</th>
                     <th>Diskon</th>
@@ -50,6 +51,7 @@
                 <tr>
                     <td><?=$no++?></td>
                     <td><?=$item->product_name?></td>
+                    <td><?=$item->product_unit?></td>
                     <td><?=$item->qty?></td>
                     <td>Rp. <?=number_format($item->base_price)?></td>
                     <td>Rp. <?=number_format($item->total_discount)?></td>
@@ -57,12 +59,13 @@
                 </tr>
                 <?php endforeach?>
                 <tr>
-                    <td colspan="6"><h4 style="margin:0">SERVIS</h4></td>
+                    <td colspan="7"><h4 style="margin:0">SERVIS</h4></td>
                 </tr>
                 <?php $no = 1; foreach($invoice->items as $item): if($item->product_type == 'SPARE PART') continue; ?>
                 <tr>
                     <td><?=$no++?></td>
                     <td><?=$item->product_name?> <?= $item->vehicle_name ? '('.$item->vehicle_name.')' : ''?></td>
+                    <td><?=$item->product_unit?></td>
                     <td><?=$item->qty?></td>
                     <td>Rp. <?=number_format($item->base_price)?></td>
                     <td>Rp. <?=number_format($item->total_discount)?></td>

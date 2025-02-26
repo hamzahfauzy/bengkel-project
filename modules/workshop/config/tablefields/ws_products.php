@@ -17,4 +17,8 @@ return [
         'label' => 'Supplier',
         'type' => 'text'
     ],
+    'unit' => [
+        'label' => 'Unit',
+        'type' => 'text'
+    ],
 ];

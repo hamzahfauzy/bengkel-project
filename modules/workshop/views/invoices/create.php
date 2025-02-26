@@ -55,6 +55,7 @@ $attr  = ['class'=>"form-control"];
                             <th>No</th>
                             <th>Product</th>
                             <th>Price</th>
+                            <th>Unit</th>
                             <th>Qty</th>
                             <th>Sub Total</th>
                             <th><button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#itemModal">Add Item</button></th>
@@ -88,7 +89,7 @@ $attr  = ['class'=>"form-control"];
             <select name="product" id="" class="form-control select2insidemodal">
                 <option value="">- Pilih -</option>
                 <?php foreach($products as $product): ?>
-                <option value="<?=$product->id?>" data-type="<?=$product->record_type?>" data-price="<?=$product->price?>"><?=$product->name?></option>
+                <option value="<?=$product->id?>" data-type="<?=$product->record_type?>" data-unit="<?=$product->unit?>" data-price="<?=$product->price?>"><?=$product->name?></option>
                 <?php endforeach ?>
             </select>
         </div>
