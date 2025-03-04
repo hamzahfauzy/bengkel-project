@@ -54,7 +54,14 @@ return [
     ],
     'ws_marketing_templates' => [
         'title',
-        'description',
+        'description' => [
+            'label' => 'Description',
+            'type' => 'textarea',
+            'attr' => [
+                'class' => 'form-control select2-search__field',
+                'placeholder' => 'parameter : {name}, {phone}, {address}'
+            ]
+        ],
         '_userstamp' => true
     ],
     'ws_marketing_campaigns' => [
@@ -63,10 +70,25 @@ return [
             'type' => 'options-obj:ws_marketing_templates,id,title'
         ],
         'title',
-        'description',
-        'start_at',
-        'finish_at',
-        'status',
+        'description' => [
+            'label' => 'Description',
+            'type' => 'textarea',
+            'attr' => [
+                'class' => 'form-control select2-search__field',
+            ]
+        ],
+        'start_at' => [
+            'label' => 'Start At',
+            'type' => 'datetime-local'
+        ],
+        'finish_at' => [
+            'label' => 'Finish At',
+            'type' => 'datetime-local'
+        ],
+        'status' => [
+            'label' => 'Status',
+            'type' => 'text'
+        ],
         '_userstamp' => true
     ],
     'ws_invoice_items' => [
@@ -115,5 +137,18 @@ return [
             'type' => 'file'
         ],
         '_userstamp' => true,
+    ],
+    'ws_marketing_campaign_items' => [
+        'campaign_id' => [
+            'label' => 'Campaign',
+            'type' => 'options-obj:ws_marketing_campaigns,id,title'
+        ],
+        'customer_id' => [
+            'label' => 'Customer',
+            'type' => 'options-obj:ws_customers,id,name'
+        ],
+        'message',
+        'notes',
+        'status'
     ]
 ];

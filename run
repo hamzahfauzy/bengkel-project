@@ -39,6 +39,8 @@ spl_autoload_register('my_autoloader');
 
 require Utility::parentPath() . 'core/functions.php';
 
+date_default_timezone_set(app('timezone', 'Asia/Jakarta'));
+
 $protocol = 'http';
 $port     = '8080';
 $address  = '127.0.0.1';

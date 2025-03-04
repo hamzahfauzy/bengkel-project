@@ -91,8 +91,6 @@ return [
         'activeState' => [
             'workshop.ws_inspections',
             'workshop.ws_services',
-            'workshop.performance.leave',
-            'workshop.performance.performance',
         ],
         'items' => [
             [
@@ -160,12 +158,12 @@ return [
             'workshop.ws_finance_journals',
         ],
         'items' => [
-            [
-                'label' => 'workshop.menu.payroll',
-                'icon'  => 'fa-fw fa-lg me-2 fa-solid fa-stream',
-                'route' => '#', // routeTo('crud/index',['table' => 'ws_customers']),
-                'activeState' => 'workshop.ws_customers'
-            ],
+            // [
+            //     'label' => 'workshop.menu.payroll',
+            //     'icon'  => 'fa-fw fa-lg me-2 fa-solid fa-stream',
+            //     'route' => '#', // routeTo('crud/index',['table' => 'ws_customers']),
+            //     'activeState' => 'workshop.ws_customers'
+            // ],
             [
                 'label' => 'workshop.menu.journals',
                 'route' => routeTo('crud/index',['table'=>'ws_finance_journals']),

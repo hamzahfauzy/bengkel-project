@@ -11,7 +11,7 @@ $('.add-item-button').click(function(){
     const data = {
         key:items.length+1,
         name: selectedData.product,
-        unit: selectedData.product.dataset.unit,
+        unit: selectedItem.product.dataset.unit,
         qty: 1,
         price: parseInt(selectedItem.product.dataset.price),
         total_price: parseInt(selectedItem.product.dataset.price),
@@ -128,3 +128,18 @@ function calculateTotalOrder()
         $('input[name="ws_invoices[total_qty]"]').val(totalQty)
     }
 }
+
+$('#inspection_id').change(function(){
+    const selected = $('#inspection_id').find(':selected')[0]
+    if(selected.dataset.customername)
+    {
+        $('#customer_name').val(selected.dataset.customername)
+        $('#customer_name').attr('readonly','')
+        $('#customer_id').val(selected.dataset.customer)
+    }
+    else
+    {
+        $('#customer_name').val("")
+        $('#customer_name').removeAttr('readonly')
+    }
+})

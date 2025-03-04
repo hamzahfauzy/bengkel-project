@@ -41,7 +41,7 @@
                 {
                     $attr['value'] = $old[$field];
                 }
-                $attr = array_merge($attr, ["placeholder"=>$label]);
+                $attr = array_merge(["placeholder"=>$label], $attr);
                 if(isset($attr['multiple']))
                 {
                     $fieldname .= "[]";

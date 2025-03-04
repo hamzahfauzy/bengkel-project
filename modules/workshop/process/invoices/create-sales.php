@@ -23,10 +23,21 @@ if(Request::isMethod('POST'))
 
         $data['customer_id'] = $customer->id;
     }
+    if(!empty($data['inspection_id']))
+    {
+        $inspection = $db->single('ws_inspections', ['id' => $data['inspection_id']]);
+        $data['vehicle_id'] = $inspection->vehicle_id;
+    }
+    else
+    {
+        unset($data['inspection_id']);
+    }
+
     $items = $_POST['items'];
     $data['total_item'] = count($items);
     $data['total_qty'] = array_sum(array_column($items, 'qty'));
     $data['total_discount'] = 0;
+    $data['total_payment'] = 0;
     $data['final_price'] = $data['total_price'];
     $data['created_by'] = auth()->id;
     $order = $db->insert($tableName, $data);
@@ -82,6 +93,9 @@ $products = $db->exec('all');
 
 $customers = $db->all('ws_customers');
 
+$db->query = "SELECT ws_inspections.*,ws_customers.name customer_name FROM ws_inspections LEFT JOIN ws_customers ON ws_customers.id = ws_inspections.customer_id LEFT JOIN ws_invoices ON ws_invoices.inspection_id = ws_inspections.id WHERE ws_invoices.id IS NULL";
+$inspections = $db->exec('all');
+
 // page section
 $title = 'Create Sales';
 Page::setActive("workshop.invoices.sales");
@@ -126,4 +140,4 @@ Page::pushHook('create');
 
 $record_type = 'SALES';
 
-return view('workshop/views/invoices/create', compact('error_msg','old','tableName','code','products','customers','record_type'));
+return view('workshop/views/invoices/create', compact('error_msg','old','tableName','code','products','customers','record_type','inspections'));

@@ -45,6 +45,14 @@
                         <?=number_format($invoice->total_qty)?>
                     </div>
                 </div>
+                <?php if($invoice->record_type == 'SALES' && $invoice->vehicle_id): ?>
+                <div class="row mb-3">
+                    <label class="mb-2 col-4">Vehicle</label>
+                    <div class="col-8">
+                        <?= $invoice->vehicle->name?> - <?=$invoice->vehicle->police_number?>
+                    </div>
+                </div>
+                <?php endif ?>
             </div>
         </div>
         <div class="form-group mb-3 table-responsive">
@@ -55,9 +63,10 @@
                         <th>Product</th>
                         <th>Price</th>
                         <th>Qty</th>
+                        <th>Unit</th>
                         <th>Sub Total</th>
-                        <?php if($invoice->record_type == 'SALES'): ?>
-                        <th>Other Information</th>
+                        <?php if($invoice->record_type == 'SALES' && $invoice->vehicle_id): ?>
+                        <th>Employee</th>
                         <?php endif ?>
                     </tr>
                 </thead>
@@ -68,11 +77,12 @@
                         <td>(<?=$item->product_type?>) <?=$item->product_name?></td>
                         <td><?=number_format($item->base_price)?></td>
                         <td><?=number_format($item->qty)?></td>
+                        <td><?=$item->product_unit?></td>
                         <td><?=number_format($item->final_price)?></td>
-                        <?php if($invoice->record_type == 'SALES'): ?>
+                        <?php if($invoice->record_type == 'SALES' && $invoice->vehicle_id): ?>
                         <td>
-                            <?php if($item->employee_name && $item->vehicle_name): ?>
-                            <?= $item->employee_name .' - '. $item->vehicle_name?>
+                            <?php if($item->employee_name): ?>
+                            <?= $item->employee_name?>
                             <?php endif ?>
 
                             <?php if($item->product_type == 'SERVICE' && is_null($item->employee_name)): ?>
@@ -110,15 +120,6 @@
                     <?php endforeach ?>
                 </select>
             </div>
-            <div class="form-group mb-3">
-                <label class="mb-2 w-100">Vehicle</label>
-                <select name="vehicle" id="" class="form-control select2insidemodal">
-                    <option value="">- Pilih -</option>
-                    <?php foreach($vehicles as $vehicle): ?>
-                    <option value="<?=$vehicle->id?>"><?=$vehicle->name?> - <?=$vehicle->police_number?></option>
-                    <?php endforeach ?>
-                </select>
-            </div>
         </form>
       </div>
       <div class="modal-footer">
@@ -128,6 +129,5 @@
     </div>
   </div>
 </div>
-
 
 <?php get_footer() ?>

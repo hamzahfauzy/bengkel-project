@@ -12,6 +12,7 @@ return [
     'ws_finance_journals' => 'Journals',
     'ws_marketing_templates' => 'Templates',
     'ws_marketing_campaigns' => 'Campaigns',
+    'ws_marketing_campaign_items' => 'Campaign Items',
     'spare part' => 'Spare Part',
     'service' => 'Service',
     'procurement' => 'Procurement',

@@ -9,7 +9,8 @@ $old        = get_flash_msg('old');
 $code = $_GET['code'];
 
 $db->update('ws_invoices', [
-    'status' => 'WAITING PAYMENT'
+    'status' => 'WAITING PAYMENT',
+    'updated_by' => auth()->id
 ], [
     'code' => $code
 ]);
