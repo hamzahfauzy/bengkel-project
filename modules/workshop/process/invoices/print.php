@@ -7,7 +7,7 @@ $db = new Database;
 $code = $_GET['code'];
 
 $invoice = $db->single('ws_invoices',['code' => $code]);
-$invoice->vehicle = $db->single('ws_customer_vehicles',['id' => $invoice->vehicle_id]);
+$invoice->vehicle = $invoice->vehicle_id ? $db->single('ws_customer_vehicles',['id' => $invoice->vehicle_id]) : null;
 $invoice->customer = $db->single('ws_customers',['id' => $invoice->customer_id]);
 $db->query = "SELECT 
                 ws_invoice_items.*, 

@@ -32,7 +32,7 @@ $attr  = ['class'=>"form-control"];
                     <div class="row mb-3">
                         <label class="mb-2 col-4">Inspection</label>
                         <div class="col-8">
-                            <select name="ws_invoices[inspection_id]" id="inspection_id" class="form-control">
+                            <select name="ws_invoices[inspection_id]" id="inspection_id" class="form-control" required>
                                 <option value="">- Pilih -</option>
                                 <?php foreach($inspections as $inspection): ?>
                                 <option value="<?=$inspection->id?>" data-customer="<?=$inspection->customer_id?>" data-customername="<?=$inspection->customer_name?>"><?=$inspection->code?></option>
