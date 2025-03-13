@@ -67,14 +67,24 @@ return [
     'ws_marketing_campaigns' => [
         'template_id' => [
             'label' => 'Template',
-            'type' => 'options-obj:ws_marketing_templates,id,title'
+            'type' => 'options-obj:ws_marketing_templates,id,title',
+            'attr' => [
+                'required' => 'required'
+            ]
         ],
-        'title',
+        'title' => [
+            'label' => 'Title',
+            'type' => 'text',
+            'attr' => [
+                'required' => 'required'
+            ]
+        ],
         'description' => [
             'label' => 'Description',
             'type' => 'textarea',
             'attr' => [
                 'class' => 'form-control select2-search__field',
+                'required' => 'required'
             ]
         ],
         'start_at' => [
