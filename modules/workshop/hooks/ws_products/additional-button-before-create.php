@@ -15,6 +15,7 @@ ob_start();
       <div class="modal-body">
         <form action="<?=routeTo('workshop/products/import')?>" method="post" name="formImport" enctype="multipart/form-data">
             <?= csrf_field() ?>
+            <input type="hidden" name="record_type" value="<?= $_GET['filter']['record_type'] ?>">
             <div class="form-group">
                 <label for="">File</label>
                 <input type="file" name="file" id="" class="form-control">

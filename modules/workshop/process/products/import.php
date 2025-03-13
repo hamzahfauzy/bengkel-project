@@ -42,7 +42,7 @@ if(Request::isMethod('POST'))
                     'category_id' => $category->id,
                     'name' => $name,
                     'supplier_name' => $supplier,
-                    'record_type' => 'SPARE PART',
+                    'record_type' => $_POST['record_type'],
                     'unit' => $unit
                 ]);
 
