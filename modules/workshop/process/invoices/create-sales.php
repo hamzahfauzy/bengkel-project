@@ -151,4 +151,4 @@ Page::pushHook('create');
 
 $record_type = 'SALES';
 
-return view('workshop/views/invoices/create', compact('error_msg','old','tableName','code','products','customers','record_type','inspections'));
+return view('workshop/views/invoices/create', compact('error_msg','old','tableName','code','products','services','customers','record_type','inspections'));
