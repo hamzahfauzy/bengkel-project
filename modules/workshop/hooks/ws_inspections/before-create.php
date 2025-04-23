@@ -43,12 +43,19 @@ try {
         $result[$key] = $value;
     }
 
-    $vehicle = $db->insert('ws_customer_vehicles', [
+    $dataKendaraan =  [
         'name' => $result['Nama'],
         'merk' => $result['Merk'],
         'type' => $result['Tipe'],
         'police_number' => $result['No. Polisi'],
-    ]);
+    ];
+
+    if(isset($data['customer_id']))
+    {
+        $dataKendaraan['customer_id'] = $data['customer_id'];
+    }
+
+    $vehicle = $db->insert('ws_customer_vehicles', $dataKendaraan);
 
     $data['vehicle_id'] = $vehicle->id;
 } catch (\Throwable $th) {

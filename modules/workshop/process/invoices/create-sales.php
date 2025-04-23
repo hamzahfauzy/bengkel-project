@@ -88,8 +88,19 @@ $db->query = "SELECT
                 ws_product_prices.amount price
               FROM ws_products 
               LEFT JOIN ws_categories ON ws_categories.id = ws_products.category_id
-              LEFT JOIN ws_product_prices ON ws_product_prices.product_id = ws_products.id AND ws_product_prices.status = 'ACTIVE'";
+              LEFT JOIN ws_product_prices ON ws_product_prices.product_id = ws_products.id AND ws_product_prices.status = 'ACTIVE'
+              WHERE ws_products.record_type = 'SPARE PART'";
 $products = $db->exec('all');
+
+$db->query = "SELECT 
+                ws_products.*, 
+                CONCAT('(',ws_products.record_type,') ', ws_products.name,' - ',ws_categories.name) name,
+                ws_product_prices.amount price
+              FROM ws_products 
+              LEFT JOIN ws_categories ON ws_categories.id = ws_products.category_id
+              LEFT JOIN ws_product_prices ON ws_product_prices.product_id = ws_products.id AND ws_product_prices.status = 'ACTIVE'
+              WHERE ws_products.record_type = 'SERVICE'";
+$services = $db->exec('all');
 
 $customers = $db->all('ws_customers');
 
