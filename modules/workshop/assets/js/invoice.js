@@ -96,7 +96,7 @@ function sanitizeSelected(value)
 
 function format_number(value)
 {
-    return new Intl.NumberFormat().format(value)
+    return new Intl.NumberFormat('en-US').format(value)
 }
 
 function refreshRow()

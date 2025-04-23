@@ -2,7 +2,7 @@
 
 return [
     'code' => [
-        'label' => 'Inspection Number',
+        'label' => 'No. Inspeksi',
         'type' => 'text'
     ],
     'customer_id' => [
@@ -14,52 +14,40 @@ return [
         'type' => "options-obj:ws_customer_vehicles,id,CONCAT(name,' - ',police_number)"
     ],
     'booking_date' => [
-        'label' => 'Booking Date',
+        'label' => 'Tanggal Pesan',
         'type' => 'datetime-local'
     ],
     'handover_date' => [
-        'label' => 'Handover Date',
+        'label' => 'Tanggal Penyerahan',
         'type' => 'datetime-local'
     ],
     'waiting_status' => [
-        'label' => 'Waiting Status',
+        'label' => 'Status Tunggu',
         'type' => 'options:WAITING|LEAVING'
     ],
     'km_in' => [
-        'label' => 'KM In',
+        'label' => 'KM Masuk',
         'type' => 'number'
     ],
     'km_out' => [
-        'label' => 'KM Out',
+        'label' => 'KM Keluar',
         'type' => 'number'
     ],
     'complaint' => [
-        'label' => 'Complaint',
+        'label' => 'Keluhan',
         'type' => 'textarea',
-        'attr' => [
-            'class' => 'form-control select2-search__field'
-        ]
     ],
     'description' => [
-        'label' => 'Description',
+        'label' => 'Deskripsi Singkat',
         'type' => 'textarea',
-        'attr' => [
-            'class' => 'form-control select2-search__field'
-        ]
     ],
     'spareparts' => [
         'label' => 'Spareparts',
         'type' => 'textarea',
-        'attr' => [
-            'class' => 'form-control select2-search__field'
-        ]
     ],
     'recommendation' => [
-        'label' => 'Recommendation',
+        'label' => 'Rekomendasi',
         'type' => 'textarea',
-        'attr' => [
-            'class' => 'form-control select2-search__field'
-        ]
     ],
     'status' => [
         'label' => 'Status',

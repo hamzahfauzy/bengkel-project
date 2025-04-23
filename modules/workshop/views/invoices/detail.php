@@ -65,9 +65,6 @@
                         <th>Qty</th>
                         <th>Unit</th>
                         <th>Sub Total</th>
-                        <?php if($invoice->record_type == 'SALES' && $invoice->vehicle_id): ?>
-                        <th>Employee</th>
-                        <?php endif ?>
                     </tr>
                 </thead>
                 <tbody>
@@ -79,18 +76,6 @@
                         <td><?=number_format($item->qty)?></td>
                         <td><?=$item->product_unit?></td>
                         <td><?=number_format($item->final_price)?></td>
-                        <?php if($invoice->record_type == 'SALES' && $invoice->vehicle_id): ?>
-                        <td>
-                            <?php if($item->employee_name): ?>
-                            <?= $item->employee_name?>
-                            <?php endif ?>
-
-                            <?php if($item->product_type == 'SERVICE' && is_null($item->employee_name)): ?>
-                                <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#employeeModal" onclick="document.querySelector('#invoice_item_id').value=<?=$item->id?>">Set Employee</button>
-                            <?php endif ?>
-
-                        </td>
-                        <?php endif ?>
                     </tr>
                     <?php endforeach ?>
                 </tbody>

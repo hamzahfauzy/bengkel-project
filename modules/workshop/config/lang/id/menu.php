@@ -1,1 +1,29 @@
-<?php return [];
+<?php 
+
+return [
+    'module_name' => 'Workshop',
+    'master_data' => 'Master Data',
+    'customers' => 'Kustomer',
+    'employees' => 'Karyawan',
+    'categories' => 'Kategori',
+    'products' => 'Produk',
+    'spareparts' => 'Sparepart',
+    'vehicles' => 'Kendaraan',
+    'performance' => 'Performa',
+    'presences' => 'Kehadiran',
+    'leaves' => 'Cuti',
+    'transactions' => 'Transaksi',
+    'invoices' => 'Faktur',
+    'sales' => 'Penjualan',
+    'services' => 'Servis',
+    'finances' => 'Keuangan',
+    'payroll' => 'Daftar Gaji',
+    'journals' => 'Jurnal',
+    'procurement' => 'Pengadaan',
+    'marketing' => 'Marketing',
+    'templates' => 'Templates',
+    'campaigns' => 'Campaigns',
+    'payments' => 'Pembayaran',
+    'tasks' => 'Tugas',
+    'inspections' => 'Inspeksi',
+];
