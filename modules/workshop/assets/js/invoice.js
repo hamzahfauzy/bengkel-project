@@ -1,7 +1,8 @@
 var record_type = $('#record_type').val()
 $('.add-item-button').click(function(){
+    const dataSelect = $(this).data('select')
     const selectedItem = {
-        product: $('select[name=product]').find(':selected')[0],
+        product: $('select[name='+dataSelect+']').find(':selected')[0],
     }
     
     const selectedData = {
@@ -15,7 +16,7 @@ $('.add-item-button').click(function(){
         qty: 1,
         price: parseInt(selectedItem.product.dataset.price),
         total_price: parseInt(selectedItem.product.dataset.price),
-        product: $('select[name=product]').val(),
+        product: $('select[name='+dataSelect+']').val(),
         product_type: selectedItem.product.dataset.type,
     }
     

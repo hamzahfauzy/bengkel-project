@@ -71,7 +71,10 @@ $attr  = ['class'=>"form-control"];
                             <th>Unit</th>
                             <th>Qty</th>
                             <th>Sub Total</th>
-                            <th><button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#itemModal">Add Item</button></th>
+                            <th>
+                                <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#serviceModal">Tambah Servis</button>
+                                <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#itemModal">Tambah Sparepart</button>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -109,7 +112,33 @@ $attr  = ['class'=>"form-control"];
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary add-item-button">Add</button>
+        <button type="button" class="btn btn-primary add-item-button" data-select="product">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="serviceModal" tabindex="-1" aria-labelledby="serviceModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="serviceModalLabel">Form Servis</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group mb-3">
+            <label class="mb-2 w-100">Servis</label>
+            <select name="service" id="" class="form-control select2insidemodal">
+                <option value="">- Pilih -</option>
+                <?php foreach($services as $service): ?>
+                <option value="<?=$service->id?>" data-type="<?=$service->record_type?>" data-unit="<?=$service->unit?>" data-price="<?=$service->price?>"><?=$service->name?></option>
+                <?php endforeach ?>
+            </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary add-item-button" data-select="service">Add</button>
       </div>
     </div>
   </div>
