@@ -43,6 +43,7 @@ $attr  = ['class'=>"form-control"];
                     <?php endif ?>
                 </div>
                 <div class="col-12 col-md-6">
+                    <?php if($record_type == 'SALES'): ?>
                     <div class="row mb-3">
                         <label class="mb-2 col-4">Customer</label>
                         <div class="col-8">
@@ -53,6 +54,7 @@ $attr  = ['class'=>"form-control"];
                             </div>
                         </div>
                     </div>
+                    <?php endif ?>
                     <div class="row mb-3">
                         <label class="mb-2 col-4">Total Qty</label>
                         <div class="col-8">
@@ -72,7 +74,9 @@ $attr  = ['class'=>"form-control"];
                             <th>Qty</th>
                             <th>Sub Total</th>
                             <th>
+                                <?php if($record_type == 'SALES'): ?>
                                 <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#serviceModal">Tambah Servis</button>
+                                <?php endif ?>
                                 <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#itemModal">Tambah Sparepart</button>
                             </th>
                         </tr>
@@ -118,6 +122,7 @@ $attr  = ['class'=>"form-control"];
   </div>
 </div>
 
+<?php if($record_type == 'SALES'): ?>
 <div class="modal fade" id="serviceModal" tabindex="-1" aria-labelledby="serviceModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -143,6 +148,7 @@ $attr  = ['class'=>"form-control"];
     </div>
   </div>
 </div>
+<?php endif ?>
 
 <div class="modal fade" id="customerModal" tabindex="-1" aria-labelledby="customerModalLabel" aria-hidden="true">
   <div class="modal-dialog">
