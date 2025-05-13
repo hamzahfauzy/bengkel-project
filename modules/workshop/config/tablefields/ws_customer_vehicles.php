@@ -6,11 +6,11 @@ return [
         'type' => 'options-obj:ws_customers,id,name'
     ],
     'name' => [
-        'label' => 'Name',
+        'label' => 'Model',
         'type' => 'text'
     ],
     'description' => [
-        'label' => 'Description',
+        'label' => 'Year',
         'type' => 'textarea',
         'attr' => [
             'class' => 'form-control select2-search__field'
@@ -21,7 +21,7 @@ return [
         'type' => 'text'
     ],
     'type' => [
-        'label' => 'Tipe',
+        'label' => 'Varian',
         'type' => 'text'
     ],
     'police_number' => [

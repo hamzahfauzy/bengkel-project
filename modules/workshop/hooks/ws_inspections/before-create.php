@@ -44,10 +44,11 @@ try {
     }
 
     $dataKendaraan =  [
-        'name' => $result['Nama'],
+        'name' => $result['Model'],
         'merk' => $result['Merk'],
-        'type' => $result['Tipe'],
+        'type' => $result['Varian'],
         'police_number' => $result['No. Polisi'],
+        'description' => $result['Tahun'],
     ];
 
     if(isset($data['customer_id']))
