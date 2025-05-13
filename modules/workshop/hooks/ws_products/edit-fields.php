@@ -15,4 +15,6 @@ if($record_type == 'SPARE PART')
     $fields['unit']['type'] = 'options:.|BOTOL|GALON|LITER|PCS|SET|KALENG|METER';
 }
 
+unset($fields['price']);
+
 return $fields;

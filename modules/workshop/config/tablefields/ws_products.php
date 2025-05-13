@@ -21,4 +21,8 @@ return [
         'label' => 'Unit',
         'type' => 'text'
     ],
+    'price' => [
+        'label' => 'Price',
+        'type' => 'number'
+    ],
 ];
