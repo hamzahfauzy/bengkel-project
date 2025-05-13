@@ -7,4 +7,6 @@ if($record_type == 'SERVICE')
     unset($fields['supplier_name']);
 }
 
+unset($fields['description']);
+
 return $fields;
