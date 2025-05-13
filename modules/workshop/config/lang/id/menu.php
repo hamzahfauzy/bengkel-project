@@ -26,4 +26,5 @@ return [
     'payments' => 'Pembayaran',
     'tasks' => 'Tugas',
     'inspections' => 'Inspeksi',
+    'dashboard' => 'Dashboard',
 ];

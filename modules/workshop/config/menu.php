@@ -2,6 +2,12 @@
 
 return [
     [
+        'label' => 'workshop.menu.dashboard',
+        'icon' => 'fa-fw fa-lg me-2 fa-solid fa-gauge-high',
+        'activeState' => 'workshop.dashboard',
+        'route' => routeTo('workshop/dashboard')
+    ],
+    [
         'label' => 'workshop.menu.master_data',
         'icon'  => 'fa-fw fa-lg me-2 fa-solid fa-stream',
         'activeState' => [

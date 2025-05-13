@@ -26,4 +26,5 @@ return [
     'payments' => 'Payments',
     'tasks' => 'Tasks',
     'inspections' => 'Inspections',
+    'dashboard' => 'Dashboard',
 ];
