@@ -31,6 +31,14 @@
                         Rp. <?= number_format($invoice->total_payment) ?>
                     </div>
                 </div>
+                <?php if($invoice->due_date): ?>
+                <div class="row mb-3">
+                    <label class="mb-2 col-4">Due Date</label>
+                    <div class="col-8">
+                        <?= $invoice->due_date ?>
+                    </div>
+                </div>
+                <?php endif ?>
             </div>
             <div class="col-12 col-md-6">
                 <div class="row mb-3">

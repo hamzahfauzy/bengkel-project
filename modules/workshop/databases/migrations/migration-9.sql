@@ -1,0 +1,1 @@
+ALTER TABLE ws_invoices ADD COLUMN due_date DATE DEFAULT NULL;

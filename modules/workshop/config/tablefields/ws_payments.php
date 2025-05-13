@@ -7,7 +7,7 @@ return [
     ],
     'payment_type' => [
         'label' => 'Payment Type',
-        'type' => 'options:CASH'
+        'type' => 'options:CASH|TRANSFER'
     ],
     'amount' => [
         'label' => 'Amount',

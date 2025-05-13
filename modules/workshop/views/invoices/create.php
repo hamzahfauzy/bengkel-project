@@ -40,6 +40,12 @@ $attr  = ['class'=>"form-control"];
                             </select>
                         </div>
                     </div>
+                    <div class="row mb-3">
+                        <label class="mb-2 col-4">Due Date</label>
+                        <div class="col-8">
+                            <input type="date" name="ws_invoices[due_date]" class="form-control" value="<?=date('Y-m-d')?>">
+                        </div>
+                    </div>
                     <?php endif ?>
                 </div>
                 <div class="col-12 col-md-6">

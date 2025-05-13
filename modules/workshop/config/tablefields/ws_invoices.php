@@ -5,6 +5,10 @@ return [
         'label' => 'Customer',
         'type' => 'options-obj:ws_customers,id,name'
     ],
+    'due_date' => [
+        'label' => 'Due Date',
+        'type' => 'text'
+    ],
     'code' => [
         'label' => 'Invoice No.',
         'type' => 'text'
