@@ -23,11 +23,11 @@ $('.add-item-button').click(function(){
     const row = `<tr id="item_${items.length+1}">
                 <td>
                 <input type="hidden" name="items[${items.length}][product_id]" value="${data.product}">
-                ${record_type == 'SALES' ? `<input type="hidden" name="items[${items.length}][base_price]" value="${data.price}">` : ''}
+                ${record_type == 'SALES' && data.product_type != 'SERVICE' ? `<input type="hidden" name="items[${items.length}][base_price]" value="${data.price}">` : ''}
                 ${items.length+1}
                 </td>
                 <td>${data.name}</td>
-                <td>${record_type == 'PROCUREMENT' ? `<input type="text" class="form-control price-input" data-type='currency' name="items[${items.length}][base_price]" value="${format_number(data.price)}" data-key="${items.length+1}">` : format_number(data.price)}</td>
+                <td>${record_type == 'PROCUREMENT' || data.product_type == 'SERVICE' ? `<input type="text" class="form-control price-input" data-type='currency' name="items[${items.length}][base_price]" value="${format_number(data.price)}" data-key="${items.length+1}">` : format_number(data.price)}</td>
                 <td>${data.unit}</td>
                 <td><input type="number" class="form-control qty-input" style="width:100px" name="items[${items.length}][qty]" value="${data.qty}" data-key="${items.length+1}"></td>
                 <td id="price-${items.length+1}">${format_number(data.price*data.qty)}</td>
