@@ -1,0 +1,1 @@
+ALTER TABLE ws_services ADD COLUMN record_status VARCHAR(100) DEFAULT "SELESAI";

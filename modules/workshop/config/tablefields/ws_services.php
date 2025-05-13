@@ -17,6 +17,10 @@ return [
         'label' => 'Deskripsi',
         'type' => "text"
     ],
+    'record_status' => [
+        'label' => 'Status',
+        'type' => "options:MENUNGGU ANTRIAN|ESTIMASI BIAYA|PEKERJAAN SERVICE|MENUNGGU SPAREPART|MENUNGGU FINAL INSPEKSI|SELESAI|ISTIRAHAT|PENDING/MENGINAP|KLAIM GARANSI"
+    ],
     'created_at' => [
         'label' => 'Tanggal Masuk',
         'type' => "date"
