@@ -16,7 +16,8 @@ $db->query = "SELECT
               FROM ws_payments 
               LEFT JOIN ws_invoice_items ON ws_invoice_items.invoice_id = ws_payments.invoice_id
               LEFT JOIN ws_products ON ws_products.id = ws_invoice_items.product_id
-              WHERE ws_payments.record_type = 'IN' AND ws_payments.created_at BETWEEN '$start_date' AND '$end_date'";
+              WHERE ws_payments.record_type = 'IN' AND ws_payments.created_at BETWEEN '$start_date' AND '$end_date'
+              GROUP BY ws_payments.invoice_id";
 
 $omset = $db->exec('single');
 
