@@ -63,3 +63,5 @@ try {
     //throw $th;
     unset($data['vehicle_id']);
 }
+
+unset($data['customer_type']);

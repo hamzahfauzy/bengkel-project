@@ -5,6 +5,10 @@ return [
         'label' => 'No. Inspeksi',
         'type' => 'text'
     ],
+    'customer_type' => [
+        'label' => 'Customer Type',
+        'type' => 'options:NEW|EXISTING'
+    ],
     'customer_id' => [
         'label' => 'Customer',
         'type' => 'options-obj:ws_customers,id,name'
