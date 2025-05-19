@@ -1,0 +1,1 @@
+ALTER TABLE ws_inspections ADD COLUMN keterangan TEXT DEFAULT NULL;

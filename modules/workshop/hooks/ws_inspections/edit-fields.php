@@ -10,4 +10,9 @@ unset($fields['status']);
 $vehicleData = [];
 $vehicleData[$vehicle->name.' - '.$vehicle->police_number] = $vehicle->id;
 $fields['vehicle_id']['type'] = 'options:'.json_encode($vehicleData);
+
+$fields['keterangan'] = [
+    'type' => 'textarea',
+    'label' => 'Keterangan'
+];
 return $fields;
