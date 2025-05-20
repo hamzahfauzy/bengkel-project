@@ -65,3 +65,8 @@ try {
 }
 
 unset($data['customer_type']);
+
+if(empty($data['handover_date']))
+{
+    unset($data['handover_date']);
+}
