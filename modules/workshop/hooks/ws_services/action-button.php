@@ -1,4 +1,8 @@
-<?php ob_start(); ?>
+<?php 
+
+/*
+ob_start(); 
+?>
 
 <div class="modal fade" id="exampleModal<?=$data->id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModal<?=$data->id?>Label" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -34,5 +38,6 @@ if(empty($data->employee_id))
 {
     return $button;
 }
+    */
 
 return '';
