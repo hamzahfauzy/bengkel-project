@@ -164,7 +164,11 @@ class Form
                 $db   = new Database($conn);
                 $db->query = "SELECT $obj_array[1] as id, $last_params as value FROM `$options` WHERE $clause";
                 $data = $db->exec('single');
-                return $data->value;
+                if($data)
+                {
+                    return $data->value;
+                }
+                return '';
             }
 
             // if(substr($type, 8,3) == 'obj')
