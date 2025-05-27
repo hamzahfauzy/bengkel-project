@@ -14,8 +14,8 @@ $('.add-item-button').click(function(){
         name: selectedData.product,
         unit: selectedItem.product.dataset.unit,
         qty: 1,
-        price: parseInt(selectedItem.product.dataset.price),
-        total_price: parseInt(selectedItem.product.dataset.price),
+        price: parseFloat(selectedItem.product.dataset.price),
+        total_price: parseFloat(selectedItem.product.dataset.price),
         product: $('select[name='+dataSelect+']').val(),
         product_type: selectedItem.product.dataset.type,
     }
@@ -23,11 +23,11 @@ $('.add-item-button').click(function(){
     const row = `<tr id="item_${items.length+1}">
                 <td>
                 <input type="hidden" name="items[${items.length}][product_id]" value="${data.product}">
-                ${record_type == 'SALES' && data.product_type != 'SERVICE' ? `<input type="hidden" name="items[${items.length}][base_price]" value="${data.price}">` : ''}
+                ${record_type == 'SALES' ? `<input type="hidden" name="items[${items.length}][base_price]" value="${data.price}">` : ''}
                 ${items.length+1}
                 </td>
                 <td>${data.name}</td>
-                <td>${record_type == 'PROCUREMENT' || data.product_type == 'SERVICE' ? `<input type="text" class="form-control price-input" data-type='currency' name="items[${items.length}][base_price]" value="${format_number(data.price)}" data-key="${items.length+1}">` : format_number(data.price)}</td>
+                <td>${record_type == 'PROCUREMENT' ? `<input type="text" class="form-control price-input" data-type='currency' name="items[${items.length}][base_price]" value="${format_number(data.price)}" data-key="${items.length+1}">` : format_number(data.price)}</td>
                 <td>${data.unit}</td>
                 <td><input type="number" class="form-control qty-input" style="width:100px" name="items[${items.length}][qty]" value="${data.qty}" data-key="${items.length+1}"></td>
                 <td id="price-${items.length+1}">${format_number(data.price*data.qty)}</td>
@@ -73,7 +73,7 @@ $(document.body).on('change', '.price-input', function(){
     const index = items.findIndex(item => item.key == key);
     const item = items[index]
 
-    item.price = parseInt(cleanCurrencyFormat($(this).val()))
+    item.price = parseFloat(cleanCurrencyFormat($(this).val()))
     item.total_price = item.price * item.qty
     $('#price-'+key).html(format_number(item.total_price))
     calculateTotalOrder()
@@ -84,7 +84,7 @@ $(document.body).on('change', '.qty-input', function(){
     const index = items.findIndex(item => item.key == key);
     const item = items[index]
 
-    item.qty = parseInt($(this).val())
+    item.qty = parseFloat($(this).val())
     item.total_price = item.price * item.qty
     $('#price-'+key).html(format_number(item.total_price))
     calculateTotalOrder()
