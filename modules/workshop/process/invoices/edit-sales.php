@@ -10,12 +10,22 @@ $module = 'workshop';
 $error_msg  = get_flash_msg('error');
 $old        = get_flash_msg('old');
 
-if(Request::isMethod('POST'))
-{
+$sales = $db->single('ws_invoices', ['code' => $_GET['code']]);
+
+$sales->customer = $db->single('ws_customers', ['id' => $sales->customer_id]);
+
+$sales->items = $db->all('ws_invoice_items', ['invoice_id' => $sales->id]);
+
+foreach ($sales->items as $item) {
+    $item->product = $db->single('ws_products', ['id' => $item->product_id]);
+}
+
+$code = $sales->code;
+
+if (Request::isMethod('POST')) {
     $data = isset($_POST[$tableName]) ? $_POST[$tableName] : [];
-    $data['total_price'] = str_replace(',','',$data['total_price']);
-    if(empty($data['customer_id']))
-    {
+    $data['total_price'] = str_replace(',', '', $data['total_price']);
+    if (empty($data['customer_id'])) {
         // unset($data['customer_id'])
         $customer = $db->insert('ws_customers', [
             'name' => $_POST['customer_name']
@@ -23,42 +33,46 @@ if(Request::isMethod('POST'))
 
         $data['customer_id'] = $customer->id;
     }
-    if(!empty($data['inspection_id']))
-    {
+    if (!empty($data['inspection_id'])) {
         $inspection = $db->single('ws_inspections', ['id' => $data['inspection_id']]);
         $data['vehicle_id'] = $inspection->vehicle_id;
-    }
-    else
-    {
+    } else {
         unset($data['inspection_id']);
+    }
+
+    $shouldDelete = array_diff(array_column($sales->items, 'id'), array_column($_POST['items'], 'id'));
+
+    foreach ($shouldDelete as $sdelete) {
+        $db->delete('ws_invoice_items', ['id' => $sdelete]);
     }
 
     $items = $_POST['items'];
     $data['total_item'] = count($items);
     $data['total_qty'] = array_sum(array_column($items, 'qty'));
-    $data['total_discount'] = 0;
-    $data['total_payment'] = 0;
     $data['final_price'] = $data['total_price'];
-    $data['created_by'] = auth()->id;
-    $order = $db->insert($tableName, $data);
+    // $data['created_by'] = auth()->id;
+    $db->update($tableName, $data, ['code' => $_GET['code']]);
 
-    foreach($items as $index => $item)
-    {
+    foreach ($items as $index => $item) {
         $item['base_price'] = intval($item['base_price']);
-        $item['invoice_id'] = $order->id;
-        $item['total_price'] = $item['base_price']*$item['qty'];
+        $item['invoice_id'] = $sales->id;
+        $item['total_price'] = $item['base_price'] * $item['qty'];
         $item['total_discount'] = 0;
         $item['final_price'] = $item['total_price'];
-        $item['created_by'] = auth()->id;
-        $item = $db->insert('ws_invoice_items', $item);
 
-        // create logs
-        $db->insert('ws_product_logs', [
-            'product_id' => $item->product_id,
-            'amount' => $item->qty,
-            'record_type' => 'OUT',
-            'description' => $order->code
-        ]);
+        if (isset($item['id'])) {
+            $item = $db->update('ws_invoice_items', $item, ['id' => $item['id']]);
+        } else {
+            $item['created_by'] = auth()->id;
+            $item = $db->insert('ws_invoice_items', $item);
+            // create logs
+            $db->insert('ws_product_logs', [
+                'product_id' => $item->product_id,
+                'amount' => $item->qty,
+                'record_type' => 'OUT',
+                'description' => $order->code
+            ]);
+        }
     }
 
     // create journals
@@ -70,17 +84,11 @@ if(Request::isMethod('POST'))
     //     'created_by' => auth()->id
     // ]);
 
-    set_flash_msg(['success'=>"Sales saved"]);
+    set_flash_msg(['success' => "Sales saved"]);
 
-    header('location:'.routeTo('workshop/invoices/detail', ['code' => $data['code']]));
+    header('location:' . routeTo('workshop/invoices/detail', ['code' => $data['code']]));
     die();
 }
-
-$db->query = "SELECT COUNT(*) as `counter` FROM ws_invoices WHERE created_at LIKE '%".date('Y-m')."%' AND record_type = 'SALES'";
-$counter = $db->exec('single')?->counter ?? 0;
-
-$counter = sprintf("%05d", $counter+1);
-$code    = 'INV' . date('Ym'). $counter;
 
 $db->query = "SELECT 
                 ws_products.*, 
@@ -108,7 +116,7 @@ $db->query = "SELECT ws_inspections.*,ws_customers.name customer_name FROM ws_in
 $inspections = $db->exec('all');
 
 // page section
-$title = 'Create Sales';
+$title = 'Edit Sales';
 Page::setActive("workshop.invoices.sales");
 Page::setTitle($title);
 Page::setModuleName($title);
@@ -142,13 +150,13 @@ tinymce.init({
 
 Page::pushHead('<style>.select2,.select2-selection{height:38px!important;} .select2-container--default .select2-selection--single .select2-selection__rendered{line-height:38px!important;}.select2-selection__arrow{height:34px!important;}</style>');
 Page::pushFoot('<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>');
-Page::pushFoot("<script src='".asset('assets/crud/js/crud.js')."'></script>");
+Page::pushFoot("<script src='" . asset('assets/crud/js/crud.js') . "'></script>");
 Page::pushFoot("<script>var items = []</script>");
-Page::pushFoot("<script src='".asset('assets/workshop/js/invoice.js?v=1.0')."'></script>");
+Page::pushFoot("<script src='" . asset('assets/workshop/js/invoice.js?v=1.0') . "'></script>");
 Page::pushFoot("<script>$('.select2insidemodal').select2({dropdownParent: $('#itemModal .modal-body')});$('.select2insidemodal2').select2({dropdownParent: $('#serviceModal .modal-body')});</script>");
 
-Page::pushHook('create');
+Page::pushHook('update');
 
 $record_type = 'SALES';
 
-return view('workshop/views/invoices/create', compact('error_msg','old','tableName','code','products','services','customers','record_type','inspections'));
+return view('workshop/views/invoices/edit-sales', compact('error_msg', 'old', 'tableName', 'code', 'products', 'services', 'customers', 'record_type', 'inspections', 'sales'));
