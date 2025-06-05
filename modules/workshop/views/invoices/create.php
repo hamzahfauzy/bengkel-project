@@ -60,6 +60,18 @@ $attr  = ['class'=>"form-control"];
                             </div>
                         </div>
                     </div>
+                    <div class="row mb-3">
+                        <label class="mb-2 col-4">Pajak (%)</label>
+                        <div class="col-8">
+                            <input type="text" name="ws_invoices[tax_alias]" id="tax_alias" value="<?= env('APP_PPN') ?>" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label class="mb-2 col-4">Pajak (Rp)</label>
+                      <div class="col-8">
+                          <input type="text" name="ws_invoices[tax_price]" id="tax_price" value="<?= $sales->tax_price ?>" class="form-control" readonly>
+                      </div>
+                    </div>
                     <?php endif ?>
                     <div class="row mb-3">
                         <label class="mb-2 col-4">Total Qty</label>

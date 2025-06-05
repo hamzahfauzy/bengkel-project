@@ -122,6 +122,12 @@ function calculateTotalOrder()
         totalQty += item.qty
     })
 
+    var tax = $('#tax_alias').val() / 100 ?? 0
+    const taxPrice = (totalOrder * tax)
+    $('#tax_price').val(format_number(taxPrice))
+    totalOrder = totalOrder + taxPrice
+
+
     $('input[name="ws_invoices[total_price]"]').val(format_number(totalOrder))
 
     if($('input[name="ws_invoices[total_qty]"]'))
@@ -129,6 +135,8 @@ function calculateTotalOrder()
         $('input[name="ws_invoices[total_qty]"]').val(totalQty)
     }
 }
+
+$('#tax_alias').keyup(calculateTotalOrder)
 
 $('#inspection_id').change(function(){
     const selected = $('#inspection_id').find(':selected')[0]

@@ -58,13 +58,21 @@
                         <?= number_format($invoice->total_qty) ?>
                     </div>
                 </div>
-                <?php if ($invoice->record_type == 'SALES' && $invoice->vehicle_id): ?>
+                <?php if ($invoice->record_type == 'SALES'): ?>
+                    <div class="row mb-3">
+                        <label class="mb-2 col-4">Pajak</label>
+                        <div class="col-8">
+                            <?=$invoice->tax_alias ? 'Rp. '.number_format($invoice->tax_price) .' ('. $invoice->tax_alias.'%)' : ''?>
+                        </div>
+                    </div>
+                    <?php if($invoice->vehicle_id): ?>
                     <div class="row mb-3">
                         <label class="mb-2 col-4">Vehicle</label>
                         <div class="col-8">
                             <?= $invoice->vehicle->name ?> - <?= $invoice->vehicle->police_number ?>
                         </div>
                     </div>
+                <?php endif ?>
                 <?php endif ?>
             </div>
         </div>

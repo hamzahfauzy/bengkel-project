@@ -101,8 +101,8 @@
                     <td>Rp. <?=number_format($invoice->total_discount)?></td>
                 </tr>
                 <tr>
-                    <td><b>PPN</b></td>
-                    <td>Rp. 0</td>
+                    <td><b>PPN <?=$invoice->tax_alias?$invoice->tax_alias.'%':''?></b></td>
+                    <td>Rp. <?=number_format($invoice->tax_price)?></td>
                 </tr>
                 <tr>
                     <td><b>Total</b></td>

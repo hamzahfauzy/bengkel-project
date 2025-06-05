@@ -39,7 +39,7 @@ $attr  = ['class' => "form-control"];
                 <select name="ws_invoices[inspection_id]" id="inspection_id" class="form-control">
                   <option value="">- Pilih -</option>
                   <?php foreach ($inspections as $inspection): ?>
-                    <option value="<?= $inspection->id ?>" data-customer="<?= $inspection->customer_id ?>" data-customername="<?= $inspection->customer_name ?>"><?= $inspection->code ?></option>
+                    <option value="<?= $inspection->id ?>" <?=$sales->inspection_id == $inspection->id ? 'selected=""' : ''?> data-customer="<?= $inspection->customer_id ?>" data-customername="<?= $inspection->customer_name ?>"><?= $inspection->code ?></option>
                   <?php endforeach ?>
                 </select>
               </div>
@@ -62,6 +62,18 @@ $attr  = ['class' => "form-control"];
                   <input type="text" name="customer_name" id="customer_name" class="form-control" value="<?= $sales->customer->name ?>" required placeholder="Type new customer name">
                   <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#customerModal" style="width:150px">or Choose</button>
                 </div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label class="mb-2 col-4">Pajak (%)</label>
+              <div class="col-8">
+                  <input type="text" name="ws_invoices[tax_alias]" id="tax_alias" value="<?= $sales->tax_alias ?>" class="form-control">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label class="mb-2 col-4">Pajak (Rp)</label>
+              <div class="col-8">
+                  <input type="text" name="ws_invoices[tax_price]" id="tax_price" value="<?= $sales->tax_price ?>" class="form-control" readonly>
               </div>
             </div>
           <?php endif ?>

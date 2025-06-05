@@ -25,6 +25,7 @@ $code = $sales->code;
 if (Request::isMethod('POST')) {
     $data = isset($_POST[$tableName]) ? $_POST[$tableName] : [];
     $data['total_price'] = str_replace(',', '', $data['total_price']);
+    $data['tax_price'] = str_replace(',', '', $data['tax_price']);
     if (empty($data['customer_id'])) {
         // unset($data['customer_id'])
         $customer = $db->insert('ws_customers', [
@@ -112,7 +113,7 @@ $services = $db->exec('all');
 
 $customers = $db->all('ws_customers');
 
-$db->query = "SELECT ws_inspections.*,ws_customers.name customer_name FROM ws_inspections LEFT JOIN ws_customers ON ws_customers.id = ws_inspections.customer_id LEFT JOIN ws_invoices ON ws_invoices.inspection_id = ws_inspections.id WHERE ws_invoices.id IS NULL";
+$db->query = "SELECT ws_inspections.*,ws_customers.name customer_name FROM ws_inspections LEFT JOIN ws_customers ON ws_customers.id = ws_inspections.customer_id LEFT JOIN ws_invoices ON ws_invoices.inspection_id = ws_inspections.id WHERE ws_invoices.id IS NULL OR ws_invoices.id = $sales->id";
 $inspections = $db->exec('all');
 
 // page section

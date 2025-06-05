@@ -572,7 +572,7 @@ function getSetting($key = false)
 }
 
 function penyebut($nilai) {
-    $nilai = abs($nilai);
+    $nilai = intval(abs($nilai));
     $huruf = array("", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sepuluh", "sebelas");
     $temp = "";
     if ($nilai < 12) {
