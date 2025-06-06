@@ -31,6 +31,12 @@
                     </div>
                 </div>
                 <div class="row mb-3">
+                    <label class="mb-2 col-4">Total Discount</label>
+                    <div class="col-8">
+                        Rp. <?= number_format($invoice->total_discount) ?>
+                    </div>
+                </div>
+                <div class="row mb-3">
                     <label class="mb-2 col-4">Total Payment</label>
                     <div class="col-8">
                         Rp. <?= number_format($invoice->total_payment) ?>
@@ -83,6 +89,7 @@
                         <th>No</th>
                         <th>Product</th>
                         <th>Price</th>
+                        <th>Discount</th>
                         <th>Qty</th>
                         <th>Unit</th>
                         <th>Sub Total</th>
@@ -94,6 +101,7 @@
                             <td><?= $index + 1 ?></td>
                             <td>(<?= $item->product_type ?>) <?= $item->product_name ?></td>
                             <td><?= number_format($item->base_price) ?></td>
+                            <td><?= number_format($item->total_discount) ?></td>
                             <td><?= number_format($item->qty) ?></td>
                             <td><?= $item->product_unit ?></td>
                             <td><?= number_format($item->final_price) ?></td>

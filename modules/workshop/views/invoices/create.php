@@ -28,6 +28,12 @@ $attr  = ['class'=>"form-control"];
                             <input type="text" name="ws_invoices[total_price]" class="form-control" value="" readonly>
                         </div>
                     </div>
+                    <div class="row mb-3">
+                        <label class="mb-2 col-4">Diskon</label>
+                        <div class="col-8">
+                            <input type="text" name="ws_invoices[total_discount]" class="form-control" value="" id="total_discount" readonly>
+                        </div>
+                    </div>
                     <?php if($record_type == 'SALES'): ?>
                     <div class="row mb-3">
                         <label class="mb-2 col-4">Inspection</label>
@@ -88,6 +94,7 @@ $attr  = ['class'=>"form-control"];
                             <th>No</th>
                             <th>Product</th>
                             <th>Price</th>
+                            <th>Discount</th>
                             <th>Unit</th>
                             <th>Qty</th>
                             <th>Sub Total</th>
@@ -101,7 +108,7 @@ $attr  = ['class'=>"form-control"];
                     </thead>
                     <tbody>
                         <tr id="empty_item">
-                            <td colspan="7" class="text-center"><i>Item is empty</i></td>
+                            <td colspan="8" class="text-center"><i>Item is empty</i></td>
                         </tr>
                     </tbody>
                 </table>

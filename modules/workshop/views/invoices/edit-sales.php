@@ -32,6 +32,12 @@ $attr  = ['class' => "form-control"];
               <input type="text" name="ws_invoices[total_price]" class="form-control" value="<?= number_format($sales->total_price) ?>" readonly>
             </div>
           </div>
+          <div class="row mb-3">
+              <label class="mb-2 col-4">Diskon</label>
+              <div class="col-8">
+                  <input type="text" name="ws_invoices[total_discount]" class="form-control" value="<?= number_format($sales->total_discount) ?>" id="total_discount" readonly>
+              </div>
+          </div>
           <?php if ($record_type == 'SALES'): ?>
             <div class="row mb-3">
               <label class="mb-2 col-4">Inspection</label>
@@ -92,6 +98,7 @@ $attr  = ['class' => "form-control"];
               <th>No</th>
               <th>Product</th>
               <th>Price</th>
+              <th>Discount</th>
               <th>Unit</th>
               <th>Qty</th>
               <th>Sub Total</th>
@@ -113,6 +120,7 @@ $attr  = ['class' => "form-control"];
                 </td>
                 <td><?= $item->product->name ?></td>
                 <td><?= number_format($item->base_price) ?></td>
+                <td><?= number_format($item->total_discount) ?></td>
                 <td><?= $item->product->unit ?></td>
                 <td><input type="number" class="form-control qty-input" style="width:100px" name="items[<?= $index ?>][qty]" value="<?= $item->qty ?>" data-key="<?= $index + 1 ?>">
                 </td>

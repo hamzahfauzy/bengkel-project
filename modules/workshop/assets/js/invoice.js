@@ -15,6 +15,7 @@ $('.add-item-button').click(function(){
         unit: selectedItem.product.dataset.unit,
         qty: 1,
         price: parseFloat(selectedItem.product.dataset.price),
+        discount: 0,
         total_price: parseFloat(selectedItem.product.dataset.price),
         product: $('select[name='+dataSelect+']').val(),
         product_type: selectedItem.product.dataset.type,
@@ -28,9 +29,10 @@ $('.add-item-button').click(function(){
                 </td>
                 <td>${data.name}</td>
                 <td>${record_type == 'PROCUREMENT' ? `<input type="text" class="form-control price-input" data-type='currency' name="items[${items.length}][base_price]" value="${format_number(data.price)}" data-key="${items.length+1}">` : format_number(data.price)}</td>
+                <td><input type="text" class="form-control discount-input" data-type='currency' name="items[${items.length}][total_discount]" value="${format_number(data.discount)}" data-key="${items.length+1}"></td>
                 <td>${data.unit}</td>
                 <td><input type="number" class="form-control qty-input" style="width:100px" name="items[${items.length}][qty]" value="${data.qty}" data-key="${items.length+1}"></td>
-                <td id="price-${items.length+1}">${format_number(data.price*data.qty)}</td>
+                <td id="price-${items.length+1}">${format_number((data.price*data.qty)-data.discount)}</td>
                 <td><button class="btn btn-sm btn-danger remove-item-button" type="button" data-target="#item_${items.length+1}" data-key="${items.length+1}"><i class="fas fa-trash"></i></button></td>
                 </tr>
                 `
@@ -74,7 +76,18 @@ $(document.body).on('change', '.price-input', function(){
     const item = items[index]
 
     item.price = parseFloat(cleanCurrencyFormat($(this).val()))
-    item.total_price = item.price * item.qty
+    item.total_price = (item.price * item.qty) - item.discount
+    $('#price-'+key).html(format_number(item.total_price))
+    calculateTotalOrder()
+})
+
+$(document.body).on('change', '.discount-input', function(){
+    var key = $(this).data('key')
+    const index = items.findIndex(item => item.key == key);
+    const item = items[index]
+
+    item.discount = parseFloat(cleanCurrencyFormat($(this).val()))
+    item.total_price = (item.price * item.qty) - item.discount
     $('#price-'+key).html(format_number(item.total_price))
     calculateTotalOrder()
 })
@@ -85,7 +98,7 @@ $(document.body).on('change', '.qty-input', function(){
     const item = items[index]
 
     item.qty = parseFloat($(this).val())
-    item.total_price = item.price * item.qty
+    item.total_price = (item.price * item.qty) - item.discount
     $('#price-'+key).html(format_number(item.total_price))
     calculateTotalOrder()
 })
@@ -117,9 +130,11 @@ function calculateTotalOrder()
 {
     var totalOrder = 0
     var totalQty = 0
+    var totalDiscount = 0
     items.forEach(item => {
         totalOrder += item.total_price
         totalQty += item.qty
+        totalDiscount += item.discount
     })
 
     var tax = $('#tax_alias').val() / 100 ?? 0
@@ -129,6 +144,7 @@ function calculateTotalOrder()
 
 
     $('input[name="ws_invoices[total_price]"]').val(format_number(totalOrder))
+    $('input[name="ws_invoices[total_discount]"]').val(format_number(totalDiscount))
 
     if($('input[name="ws_invoices[total_qty]"]'))
     {
