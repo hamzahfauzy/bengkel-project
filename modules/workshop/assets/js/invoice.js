@@ -77,6 +77,7 @@ $(document.body).on('change', '.price-input', function(){
 
     item.price = parseFloat(cleanCurrencyFormat($(this).val()))
     item.total_price = (item.price * item.qty) - item.discount
+    console.log(total_price)
     $('#price-'+key).html(format_number(item.total_price))
     calculateTotalOrder()
 })
