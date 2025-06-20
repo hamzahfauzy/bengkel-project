@@ -77,7 +77,7 @@ $(document.body).on('change', '.price-input', function(){
 
     item.price = parseFloat(cleanCurrencyFormat($(this).val()))
     item.total_price = (item.price * item.qty) - item.discount
-    console.log(total_price)
+    console.log(item.total_price)
     $('#price-'+key).html(format_number(item.total_price))
     calculateTotalOrder()
 })
@@ -89,7 +89,7 @@ $(document.body).on('change', '.discount-input', function(){
 
     item.discount = parseFloat(cleanCurrencyFormat($(this).val()))
     item.total_price = (item.price * item.qty) - item.discount
-    console.log(total_price)
+    console.log(item.total_price)
     $('#price-'+key).html(format_number(item.total_price))
     calculateTotalOrder()
 })
@@ -101,7 +101,7 @@ $(document.body).on('change', '.qty-input', function(){
 
     item.qty = parseFloat($(this).val())
     item.total_price = (item.price * item.qty) - item.discount
-    console.log(total_price)
+    console.log(item.total_price)
     $('#price-'+key).html(format_number(item.total_price))
     calculateTotalOrder()
 })
