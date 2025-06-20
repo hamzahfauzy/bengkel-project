@@ -75,7 +75,7 @@ $attr  = ['class'=>"form-control"];
                     <div class="row mb-3">
                       <label class="mb-2 col-4">Pajak (Rp)</label>
                       <div class="col-8">
-                          <input type="text" name="ws_invoices[tax_price]" id="tax_price" value="<?= $sales->tax_price ?>" class="form-control" readonly>
+                          <input type="text" name="ws_invoices[tax_price]" id="tax_price" value="" class="form-control" readonly>
                       </div>
                     </div>
                     <?php endif ?>
