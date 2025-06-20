@@ -234,6 +234,7 @@ $attr  = ['class' => "form-control"];
       total_price: parseFloat(item.total_price),
       product: item.product_id,
       product_type: item.product.type,
+      discount:0,
     })
   })
 </script>
