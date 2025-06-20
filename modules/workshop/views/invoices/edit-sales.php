@@ -203,7 +203,7 @@ $attr  = ['class' => "form-control"];
       <div class="modal-body">
         <div class="form-group mb-3">
           <label class="mb-2 w-100">Customer</label>
-          <select id="customerSelect" class="form-control select2insidemodal2">
+          <select id="customerSelect" class="form-control select2insidemodal3">
             <option value="">- Pilih -</option>
             <?php foreach ($customers as $customer): ?>
               <option value="<?= $customer->id ?>"><?= $customer->name ?> - (<?= $customer->phone ?>)</option>

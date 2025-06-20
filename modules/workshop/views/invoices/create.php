@@ -158,7 +158,7 @@ $attr  = ['class'=>"form-control"];
       <div class="modal-body">
         <div class="form-group mb-3">
             <label class="mb-2 w-100">Servis</label>
-            <select name="service" id="" class="form-control select2insidemodal2">
+            <select name="service" id="" class="form-control select2insidemodal3">
                 <option value="">- Pilih -</option>
                 <?php foreach($services as $service): ?>
                 <option value="<?=$service->id?>" data-type="<?=$service->record_type?>" data-unit="<?=$service->unit?>" data-price="<?=$service->price?>"><?=$service->name?></option>
