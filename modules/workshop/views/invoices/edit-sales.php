@@ -120,7 +120,7 @@ $attr  = ['class' => "form-control"];
                 </td>
                 <td><?= $item->product->name ?></td>
                 <td><?= number_format($item->base_price) ?></td>
-                <td><input type="number" class="form-control discount-input" style="width:100px" name="items[<?= $index ?>][discount]" value="<?= $item->total_discount ?>" data-key="<?= $index + 1 ?>">
+                <td><input type="number" class="form-control discount-input" style="width:100px" name="items[<?= $index ?>][total_discount]" value="<?= $item->total_discount ?>" data-key="<?= $index + 1 ?>">
                 <td><?= $item->product->unit ?></td>
                 <td><input type="number" step=".1" class="form-control qty-input" style="width:100px" name="items[<?= $index ?>][qty]" value="<?= $item->qty ?>" data-key="<?= $index + 1 ?>">
                 </td>
