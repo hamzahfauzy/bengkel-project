@@ -52,4 +52,4 @@ Page::setBreadcrumbs([
     ]
 ]);
 
-return view('workshop/views/performance/detail', compact('error_msg','success_msg','old','employee','tasks'));
+return view('workshop/views/performance/detail', compact('error_msg','success_msg','old','employee','tasks','presences'));
