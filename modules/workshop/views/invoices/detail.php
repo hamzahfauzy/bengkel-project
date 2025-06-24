@@ -102,7 +102,7 @@
                             <td>(<?= $item->product_type ?>) <?= $item->product_name ?></td>
                             <td><?= number_format($item->base_price) ?></td>
                             <td><?= number_format($item->total_discount) ?></td>
-                            <td><?= number_format($item->qty) ?></td>
+                            <td><?= number_format($item->qty, 2) ?></td>
                             <td><?= $item->product_unit ?></td>
                             <td><?= number_format($item->final_price) ?></td>
                         </tr>
