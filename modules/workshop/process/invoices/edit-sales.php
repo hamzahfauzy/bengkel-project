@@ -65,7 +65,7 @@ if (Request::isMethod('POST')) {
         $item['invoice_id'] = $sales->id;
         $item['total_price'] = $item['base_price'] * $item['qty'];
         $item['total_discount'] = str_replace(',', '', $item['total_discount']);
-        $item['final_price'] = $item['total_price'];
+        $item['final_price'] = $item['total_price'] - $item['total_discount'];
 
         if (isset($item['id'])) {
             $item = $db->update('ws_invoice_items', $item, ['id' => $item['id']]);
