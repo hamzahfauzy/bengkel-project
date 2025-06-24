@@ -14,6 +14,7 @@ if(Request::isMethod('POST'))
 {
     $data = isset($_POST[$tableName]) ? $_POST[$tableName] : [];
     $data['total_price'] = str_replace(',','',$data['total_price']);
+    $data['tax_price'] = str_replace(',', '', $data['tax_price']);
     if(empty($data['customer_id']))
     {
         // unset($data['customer_id'])
