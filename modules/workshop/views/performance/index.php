@@ -5,8 +5,8 @@
         <p class="h4 m-0"><?php get_title() ?></p>
     </div>
     <div class="card-body">
+        <form action="">
         <div class="row mb-4">
-            <form action="">
             <div class="col">
                 <label>Start Date</label>
                 <input type="date" name="start_date" class="form-control filters" id="" value="<?=isset($_GET['start_date']) ? $_GET['start_date'] : date('Y-m-d')?>">
@@ -21,8 +21,8 @@
                     <button class="btn btn-primary">Submit</button>
                 </div>
             </div>
-            </form>
         </div>
+    </form>
 
         <div class="table-responsive">
             <table class="table table-bordered table-item">
