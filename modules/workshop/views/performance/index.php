@@ -45,7 +45,7 @@
                         <td><?=number_format($employee->total_leave)?></td>
                         <td><?=number_format($employee->total_task)?></td>
                         <td>
-                            <a href="<?= routeTo('workshop/performance/detail', ['employee_id' => $employee->id, 'start_date' => '', 'end_date' => '']) ?>" class="btn btn-info btn-sm"><i class="fas fa-eye"></i> Detail</a>
+                            <a href="<?= routeTo('workshop/performance/detail', ['employee_id' => $employee->id, 'start_date' => isset($_GET['start_date']) ? $_GET['start_date'] : date('Y-m-d'), 'end_date' => isset($_GET['end_date']) ? $_GET['end_date'] : date('Y-m-d')]) ?>" class="btn btn-info btn-sm"><i class="fas fa-eye"></i> Detail</a>
                         </td>
                     </tr>
                     <?php endforeach ?>
