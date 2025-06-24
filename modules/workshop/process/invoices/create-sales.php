@@ -48,7 +48,7 @@ if(Request::isMethod('POST'))
         $item['base_price'] = intval($item['base_price']);
         $item['invoice_id'] = $order->id;
         $item['total_price'] = $item['base_price']*$item['qty'];
-        $item['total_discount'] = 0;
+        $item['total_discount'] = str_replace(',', '', $item['total_discount']);
         $item['final_price'] = $item['total_price'];
         $item['created_by'] = auth()->id;
         $item = $db->insert('ws_invoice_items', $item);

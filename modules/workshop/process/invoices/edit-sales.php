@@ -26,6 +26,7 @@ if (Request::isMethod('POST')) {
     $data = isset($_POST[$tableName]) ? $_POST[$tableName] : [];
     $data['total_price'] = str_replace(',', '', $data['total_price']);
     $data['tax_price'] = str_replace(',', '', $data['tax_price']);
+    $data['total_discount'] = str_replace(',', '', $data['total_discount']);
     if (empty($data['customer_id'])) {
         // unset($data['customer_id'])
         $customer = $db->insert('ws_customers', [
@@ -58,7 +59,7 @@ if (Request::isMethod('POST')) {
         $item['base_price'] = intval($item['base_price']);
         $item['invoice_id'] = $sales->id;
         $item['total_price'] = $item['base_price'] * $item['qty'];
-        $item['total_discount'] = 0;
+        $item['total_discount'] = str_replace(',', '', $item['total_discount']);
         $item['final_price'] = $item['total_price'];
 
         if (isset($item['id'])) {
