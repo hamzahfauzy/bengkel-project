@@ -34,7 +34,7 @@ if($isNew)
     unset($fields['vehicle_type']);
 }
 
-if( $isNewVehicle)
+if(!$isNew && $isNewVehicle)
 {
     $fields['vehicle_id']['label'] = 'Kendaraan (Format tidak boleh di ubah)';
     $fields['vehicle_id']['type'] = 'textarea';
