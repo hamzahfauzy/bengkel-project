@@ -65,6 +65,7 @@ try {
 }
 
 unset($data['customer_type']);
+unset($data['vehicle_type']);
 
 if(empty($data['handover_date']))
 {
