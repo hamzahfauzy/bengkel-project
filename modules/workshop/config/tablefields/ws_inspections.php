@@ -13,6 +13,10 @@ return [
         'label' => 'Customer',
         'type' => 'options-obj:ws_customers,id,name'
     ],
+    'vehicle_type' => [
+        'label' => 'Vehicle Type',
+        'type' => 'options:NEW|EXISTING'
+    ],
     'vehicle_id' => [
         'label' => 'Vehicle',
         'type' => "options-obj:ws_customer_vehicles,id,CONCAT(name,' - ',police_number)"
