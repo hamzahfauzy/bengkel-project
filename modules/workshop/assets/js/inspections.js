@@ -14,7 +14,8 @@ $('select[name="ws_inspections[customer_id]"]').change(function(){
 })
 
 $('select[name="ws_inspections[customer_type]"]').change(function(){
-    window.location.href = '/crud/create?table=ws_inspections&customer_type='+$(this).val()+'&vehicle_type='+$('select[name="ws_inspections[vehicle_type]"]').val()
+    const vehicleType = $('select[name="ws_inspections[vehicle_type]"]').val() ?? 'NEW'
+    window.location.href = '/crud/create?table=ws_inspections&customer_type='+$(this).val()+'&vehicle_type='+vehicleType
 })
 
 $('select[name="ws_inspections[vehicle_type]"]').change(function(){
