@@ -14,5 +14,9 @@ $('select[name="ws_inspections[customer_id]"]').change(function(){
 })
 
 $('select[name="ws_inspections[customer_type]"]').change(function(){
-    window.location.href = '/crud/create?table=ws_inspections&customer_type='+$(this).val()
+    window.location.href = '/crud/create?table=ws_inspections&customer_type='+$(this).val()+'&vehicle_type='+$('select[name="ws_inspections[vehicle_type]"]')
+})
+
+$('select[name="ws_inspections[vehicle_type]"]').change(function(){
+    window.location.href = '/crud/create?table=ws_inspections&vehicle_type='+$(this).val()+'&customer_type='+$('select[name="ws_inspections[customer_type]"]')
 })
