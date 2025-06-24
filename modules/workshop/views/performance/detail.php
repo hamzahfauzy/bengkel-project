@@ -20,7 +20,7 @@
                     <?php foreach($presences as $index => $presence): ?>
                     <tr>
                         <td><?=$index+1?></td>
-                        <td><?=$presence->status?></td>
+                        <td><?=$presence->record_status?></td>
                         <td><?=date('d-m-Y H:i', strtotime($presence->created_at))?></td>
                     </tr>
                     <?php endforeach ?>
