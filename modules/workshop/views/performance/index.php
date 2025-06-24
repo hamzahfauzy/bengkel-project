@@ -16,10 +16,6 @@
                 <input type="date" name="end_date" class="form-control filters" id="" value="<?=isset($_GET['end_date']) ? $_GET['end_date'] : date('Y-m-d')?>">
             </div>
             <div class="col">
-                <label>Status</label>
-                <?= \Core\Form::input('options:- Pilih -|NEW|APPROVE|CANCEL', 'status', ['class' => 'form-control', 'placeholder filters' => 'Pilih Status', 'required' => '']) ?>
-            </div>
-            <div class="col">
                 <label for="">&nbsp;</label>
                 <div>
                     <button class="btn btn-primary">Submit</button>

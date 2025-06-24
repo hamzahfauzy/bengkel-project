@@ -20,7 +20,7 @@ $db->query = "SELECT
           FROM ws_employees
           LEFT JOIN ws_services ON ws_services.employee_id = ws_employees.id AND ws_services.created_at BETWEEN '$start_date' AND '$end_date'
           LEFT JOIN ws_invoices ON ws_invoices.created_by = ws_employees.user_id AND ws_invoices.created_at BETWEEN '$start_date' AND '$end_date'
-          LEFT JOIN ws_employee_presences ON ws_employee_presences.employee_id = ws_employees.id AND ws_employee_presences.created_at BETWEEN '$start_date' AND '$end_date'
+          LEFT JOIN ws_employee_presences ON ws_employee_presences.employee_id = ws_employees.id AND ws_employee_presences.status = 'APPROVE' AND ws_employee_presences.created_at BETWEEN '$start_date' AND '$end_date'
           GROUP BY ws_employees.id";
 $employees = $db->exec('all');
 
