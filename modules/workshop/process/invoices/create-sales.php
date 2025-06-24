@@ -42,7 +42,7 @@ if(Request::isMethod('POST'))
     $items = $_POST['items'];
     $data['total_item'] = count($items);
     $data['total_qty'] = array_sum(array_column($items, 'qty'));
-    $data['total_discount'] = 0;
+    $data['total_discount'] = str_replace(',', '', $data['total_discount']);
     $data['total_payment'] = 0;
     $data['final_price'] = $data['total_price'];
     $data['created_by'] = auth()->id;
