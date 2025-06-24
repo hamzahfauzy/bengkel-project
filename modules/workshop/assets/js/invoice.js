@@ -31,7 +31,7 @@ $('.add-item-button').click(function(){
                 <td>${record_type == 'PROCUREMENT' ? `<input type="text" class="form-control price-input" data-type='currency' name="items[${items.length}][base_price]" value="${format_number(data.price)}" data-key="${items.length+1}">` : format_number(data.price)}</td>
                 <td><input type="text" class="form-control discount-input" data-type='currency' name="items[${items.length}][total_discount]" value="${format_number(data.discount)}" data-key="${items.length+1}"></td>
                 <td>${data.unit}</td>
-                <td><input type="number" class="form-control qty-input" style="width:100px" name="items[${items.length}][qty]" value="${data.qty}" data-key="${items.length+1}"></td>
+                <td><input type="number" class="form-control qty-input" style="width:100px" name="items[${items.length}][qty]" value="${data.qty}" data-key="${items.length+1}" step=".1"></td>
                 <td id="price-${items.length+1}">${format_number((data.price*data.qty)-data.discount)}</td>
                 <td><button class="btn btn-sm btn-danger remove-item-button" type="button" data-target="#item_${items.length+1}" data-key="${items.length+1}"><i class="fas fa-trash"></i></button></td>
                 </tr>
