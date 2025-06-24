@@ -34,6 +34,11 @@ if(Request::isMethod('POST'))
         unset($data['inspection_id']);
     }
 
+    if(empty($data['due_date']))
+    {
+        unset($data['due_date']);
+    }
+
     $items = $_POST['items'];
     $data['total_item'] = count($items);
     $data['total_qty'] = array_sum(array_column($items, 'qty'));

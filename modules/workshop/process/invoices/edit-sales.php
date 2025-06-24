@@ -42,6 +42,11 @@ if (Request::isMethod('POST')) {
         unset($data['inspection_id']);
     }
 
+    if(empty($data['due_date']))
+    {
+        unset($data['due_date']);
+    }
+
     $shouldDelete = array_diff(array_column($sales->items, 'id'), array_column($_POST['items'], 'id'));
 
     foreach ($shouldDelete as $sdelete) {
