@@ -6,6 +6,7 @@
     </div>
     <div class="card-body">
         <div class="row mb-4">
+            <form action="">
             <div class="col">
                 <label>Start Date</label>
                 <?= \Core\Form::input('date', 'start_date', ['class' => 'form-control filters']) ?>
@@ -21,9 +22,10 @@
             <div class="col">
                 <label for="">&nbsp;</label>
                 <div>
-                    <button class="btn btn-primary" onclick="window.reportData.draw()">Submit</button>
+                    <button class="btn btn-primary">Submit</button>
                 </div>
             </div>
+            </form>
         </div>
 
         <div class="table-responsive">
