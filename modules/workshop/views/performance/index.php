@@ -9,11 +9,11 @@
             <form action="">
             <div class="col">
                 <label>Start Date</label>
-                <?= \Core\Form::input('date', 'start_date', ['class' => 'form-control filters']) ?>
+                <input type="date" name="start_date" class="form-control filters" id="" value="<?=isset($_GET['start_date']) ? $_GET['start_date'] : date('Y-m-d')?>">
             </div>
             <div class="col">
                 <label>End Date</label>
-                <?= \Core\Form::input('date', 'end_date', ['class' => 'form-control filters']) ?>
+                <input type="date" name="end_date" class="form-control filters" id="" value="<?=isset($_GET['end_date']) ? $_GET['end_date'] : date('Y-m-d')?>">
             </div>
             <div class="col">
                 <label>Status</label>
