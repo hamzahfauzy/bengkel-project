@@ -27,9 +27,14 @@ if($isNew)
     $fields['customer_id']['type'] = 'textarea';
     $fields['customer_id']['attr']['value'] = "Nama: \nAlamat: \nNo. HP: ";
     $fields['customer_id']['attr']['rows'] = 8;
+    $fields['vehicle_id']['label'] = 'Kendaraan (Format tidak boleh di ubah)';
+    $fields['vehicle_id']['type'] = 'textarea';
+    $fields['vehicle_id']['attr']['value'] = "Merk: \nModel: \nVarian: \nTahun: \nNo. Polisi: ";
+    $fields['vehicle_id']['attr']['rows'] = 8;
+    unset($fields['vehicle_type']);
 }
 
-if($isNewVehicle)
+if( $isNewVehicle)
 {
     $fields['vehicle_id']['label'] = 'Kendaraan (Format tidak boleh di ubah)';
     $fields['vehicle_id']['type'] = 'textarea';
