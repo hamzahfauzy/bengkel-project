@@ -1,0 +1,1 @@
+ALTER TABLE ws_invoices ADD COLUMN description TEXT DEFAULT NULL;

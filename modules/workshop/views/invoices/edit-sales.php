@@ -57,6 +57,12 @@ $attr  = ['class' => "form-control"];
               </div>
             </div>
           <?php endif ?>
+          <div class="row mb-3">
+              <label class="mb-2 col-4">Keterangan</label>
+              <div class="col-8">
+                  <textarea name="ws_invoices[description]" class="form-control"><?=$sales->description?></textarea>
+              </div>
+          </div>
         </div>
         <div class="col-12 col-md-6">
           <?php if ($record_type == 'SALES'): ?>

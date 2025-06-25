@@ -86,7 +86,7 @@
                 <tr>
                     <td colspan="6" rowspan="4">
                         <b>Terbilang : </b> <?= ucwords(terbilang($invoice->final_price))?> Rupiah<br>
-                        <b>Keterangan : </b> <?= nl2br($invoice->inspection->keterangan ?? '') ?>
+                        <b>Keterangan : </b> <?= nl2br($invoice->description ?? '') ?>
 
                         <div style="display: flex;justify-content:space-around;margin-top:25px;">
                             <p>Penerima,</p>
