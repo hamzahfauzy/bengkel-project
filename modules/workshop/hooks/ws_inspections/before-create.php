@@ -27,7 +27,7 @@ try {
     $data['customer_id'] = $customer->id;
 } catch (\Throwable $th) {
     //throw $th;
-    unset($data['customer_id']);
+    // unset($data['customer_id']);
 }
 
 try {
@@ -61,7 +61,7 @@ try {
     $data['vehicle_id'] = $vehicle->id;
 } catch (\Throwable $th) {
     //throw $th;
-    unset($data['vehicle_id']);
+    // unset($data['vehicle_id']);
 }
 
 unset($data['customer_type']);
