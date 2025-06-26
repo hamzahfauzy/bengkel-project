@@ -41,7 +41,7 @@ $attr  = ['class'=>"form-control"];
                             <select name="ws_invoices[inspection_id]" id="inspection_id" class="form-control">
                                 <option value="">- Pilih -</option>
                                 <?php foreach($inspections as $inspection): ?>
-                                <option value="<?=$inspection->id?>" data-customer="<?=$inspection->customer_id?>" data-customername="<?=$inspection->customer_name?>"><?=$inspection->code?></option>
+                                <option value="<?=$inspection->id?>" data-customer="<?=$inspection->customer_id?>" data-customername="<?=$inspection->customer_name?>"><?=$inspection->code?> - <?=$inspection->police_number?></option>
                                 <?php endforeach ?>
                             </select>
                         </div>

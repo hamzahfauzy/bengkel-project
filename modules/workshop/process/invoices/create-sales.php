@@ -110,7 +110,14 @@ $services = $db->exec('all');
 
 $customers = $db->all('ws_customers');
 
-$db->query = "SELECT ws_inspections.*,ws_customers.name customer_name FROM ws_inspections LEFT JOIN ws_customers ON ws_customers.id = ws_inspections.customer_id LEFT JOIN ws_invoices ON ws_invoices.inspection_id = ws_inspections.id WHERE ws_invoices.id IS NULL";
+$db->query = "SELECT 
+                ws_inspections.*, ws_customers.name customer_name, ws_customer_vehicles.police_number
+            FROM ws_inspections 
+            LEFT JOIN ws_customers ON ws_customers.id = ws_inspections.customer_id 
+            LEFT JOIN ws_invoices ON ws_invoices.inspection_id = ws_inspections.id 
+            LEFT JOIN ws_customer_vehicles ON ws_customer_vehicles.id = ws_inspections.vehicle_id 
+            WHERE ws_invoices.id IS NULL 
+            ORDER BY ws_inspections.id DESC";
 $inspections = $db->exec('all');
 
 // page section
