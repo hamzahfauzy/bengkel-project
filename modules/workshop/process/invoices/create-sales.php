@@ -158,7 +158,37 @@ Page::pushFoot('<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dis
 Page::pushFoot("<script src='".asset('assets/crud/js/crud.js')."'></script>");
 Page::pushFoot("<script>var items = []</script>");
 Page::pushFoot("<script src='".asset('assets/workshop/js/invoice.js?v=1.0')."'></script>");
-Page::pushFoot("<script>$('.select2insidemodal').select2({dropdownParent: $('#itemModal .modal-body')});$('.select2insidemodal2').select2({dropdownParent: $('#customerModal .modal-body')});$('.select2insidemodal3').select2({dropdownParent: $('#serviceModal .modal-body')});</script>");
+Page::pushFoot("<script>
+$('.select2insidemodal').select2({dropdownParent: $('#itemModal .modal-body')});
+$('.select2insidemodal2').select2({dropdownParent: $('#customerModal .modal-body')});
+$('.select2insidemodal3').select2({dropdownParent: $('#serviceModal .modal-body')});
+$('.select2insidemodal4').select2({dropdownParent: $('#newItemModal .modal-body')});
+$('.categoriesSelect').select2({
+    ajax: { 
+        url: '/workshop/categories',
+        dataType: 'json',
+        data: function (params) {
+
+            var queryParameters = {
+                term: params.term,
+                record_type: $('#new_product_type').val()
+            }
+            return queryParameters;
+        },
+        processResults: function (data) {
+            return {
+                results: $.map(data.data, function (item) {
+                    return {
+                        text: item.name,
+                        id: item.id
+                    }
+                })
+            };
+        }
+    },
+    dropdownParent: $('#newItemModal .modal-body')
+});
+</script>");
 
 Page::pushHook('create');
 

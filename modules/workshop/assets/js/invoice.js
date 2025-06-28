@@ -44,6 +44,64 @@ $('.add-item-button').click(function(){
     calculateTotalOrder()
 });
 
+$('.add-new-item-button').click(async function(){
+    const item = {
+        type: $('#new_product_type').val(),
+        category: $('#new_product_category').val(),
+        name: $('#new_product_name').val(),
+        price: $('#new_product_price').val(),
+        unit: $('#new_product_unit').val(),
+    }
+
+    const formData = new FormData;
+    formData.append('_token', $('input[name="_token"]').val())
+    formData.append('type', item.type)
+    formData.append('category', item.category)
+    formData.append('name', item.name)
+    formData.append('price', item.price)
+    formData.append('unit', item.unit)
+    const request = await fetch('/workshop/products/insert', {
+        method: 'POST',
+        body: formData
+    })
+
+    const response = await request.json()
+    
+    const data = {
+        key:items.length+1,
+        name: item.name,
+        unit: item.unit,
+        qty: 1,
+        price: parseFloat(item.price),
+        discount: 0,
+        total_price: parseFloat(item.price),
+        product: response.data.id,
+        product_type: item.type,
+    }
+    
+    const row = `<tr id="item_${items.length+1}">
+                <td>
+                <input type="hidden" name="items[${items.length}][product_id]" value="${data.product}">
+                ${record_type == 'SALES' ? `<input type="hidden" name="items[${items.length}][base_price]" value="${data.price}">` : ''}
+                ${items.length+1}
+                </td>
+                <td>${data.name}</td>
+                <td>${record_type == 'PROCUREMENT' ? `<input type="text" class="form-control price-input" data-type='currency' name="items[${items.length}][base_price]" value="${format_number(data.price)}" data-key="${items.length+1}">` : format_number(data.price)}</td>
+                <td><input type="text" class="form-control discount-input" data-type='currency' name="items[${items.length}][total_discount]" value="${format_number(data.discount)}" data-key="${items.length+1}"></td>
+                <td>${data.unit}</td>
+                <td><input type="number" class="form-control qty-input" style="width:100px" name="items[${items.length}][qty]" value="${data.qty}" data-key="${items.length+1}" step=".1"></td>
+                <td id="price-${items.length+1}">${format_number((data.price*data.qty)-data.discount)}</td>
+                <td><button class="btn btn-sm btn-danger remove-item-button" type="button" data-target="#item_${items.length+1}" data-key="${items.length+1}"><i class="fas fa-trash"></i></button></td>
+                </tr>
+                `
+    $('.table-item tbody').append(row)
+    items.push(data)
+
+    refreshRow()
+
+    calculateTotalOrder()
+});
+
 $('.add-customer-button').click(function(){
     const customer = $('#customerSelect').find(':selected')[0]
     $('#customer_name').val(customer.text)

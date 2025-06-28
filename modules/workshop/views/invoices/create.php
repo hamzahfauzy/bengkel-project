@@ -56,7 +56,7 @@ $attr  = ['class'=>"form-control"];
                     <div class="row mb-3">
                         <label class="mb-2 col-4">Keterangan</label>
                         <div class="col-8">
-                            <textarea name="ws_invoices[description]" class="form-control"></textarea>
+                            <textarea name="ws_invoices[description]" class="form-control select2-search__field"></textarea>
                         </div>
                     </div>
                 </div>
@@ -109,6 +109,7 @@ $attr  = ['class'=>"form-control"];
                                 <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#serviceModal">Tambah Servis</button>
                                 <?php endif ?>
                                 <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#itemModal">Tambah Sparepart</button>
+                                <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#newItemModal">Item Baru</button>
                             </th>
                         </tr>
                     </thead>
@@ -202,6 +203,49 @@ $attr  = ['class'=>"form-control"];
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary use-walking-guest" data-bs-dismiss="modal">Using new customer</button>
         <button type="button" class="btn btn-primary add-customer-button">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="newItemModal" tabindex="-1" aria-labelledby="newItemModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="newItemModalLabel">Form Item</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group mb-3">
+            <label class="mb-2 w-100">Tipe Produk</label>
+            <select name="product_type" id="new_product_type" class="form-control select2insidemodal4">
+                <option value="SERVICE">Servis</option>
+                <option value="SPARE PART">Sparepart</option>
+            </select>
+        </div>
+        <div class="form-group mb-3">
+            <label class="mb-2 w-100">Kategori</label>
+            <select name="product_category" id="new_product_category" class="form-control categoriesSelect">
+                <option value="">- Pilih -</option>
+            </select>
+        </div>
+        <div class="form-group mb-3">
+            <label class="mb-2 w-100">Nama Produk</label>
+            <input type="text" name="new_product" id="new_product_name" class="form-control">
+        </div>
+        <div class="form-group mb-3">
+            <label class="mb-2 w-100">Harga</label>
+            <input type="text" name="new_price" id="new_product_price" class="form-control">
+        </div>
+        <div class="form-group mb-3">
+            <label class="mb-2 w-100">Satuan</label>
+            <input type="text" name="new_unit" id="new_product_unit" class="form-control">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary add-new-item-button" data-select="product">Add</button>
       </div>
     </div>
   </div>
