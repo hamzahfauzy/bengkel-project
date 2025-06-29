@@ -1,0 +1,2 @@
+ALTER TABLE ws_employee_presences ADD COLUMN start_at TIMESTAMP DEFAULT NULL;
+ALTER TABLE ws_employee_presences ADD COLUMN end_at TIMESTAMP DEFAULT NULL;

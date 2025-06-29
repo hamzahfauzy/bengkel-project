@@ -29,10 +29,11 @@
                 <thead>
                     <tr>
                         <th width="40px">No</th>
-                        <th>Employee</th>
-                        <th>Total Presence</th>
-                        <th>Total Leave</th>
-                        <th>Total Task</th>
+                        <th>Karyawan</th>
+                        <th>Total Kehadiran</th>
+                        <th>Total Cuti</th>
+                        <th>Total Pekerjaan</th>
+                        <th>Total Transaksi</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -44,6 +45,7 @@
                         <td><?=number_format($employee->total_presence)?></td>
                         <td><?=number_format($employee->total_leave)?></td>
                         <td><?=number_format($employee->total_task)?></td>
+                        <td>Rp. <?=number_format($employee->total_transaction ?? 0)?></td>
                         <td>
                             <a href="<?= routeTo('workshop/performance/detail', ['employee_id' => $employee->id, 'start_date' => isset($_GET['start_date']) ? $_GET['start_date'] : date('Y-m-d'), 'end_date' => isset($_GET['end_date']) ? $_GET['end_date'] : date('Y-m-d')]) ?>" class="btn btn-info btn-sm"><i class="fas fa-eye"></i> Detail</a>
                         </td>

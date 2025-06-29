@@ -1,8 +1,10 @@
 <?php get_header(); ?>
-<style>.select2 {width:100% !important}</style>
 <div class="card">
-    <div class="card-header d-flex flex-grow-1 align-items-center">
-        <p class="h4 m-0"><?php get_title() ?></p>
+    <div class="card-header d-flex flex-grow-1 justify-content-between">
+        <p class="h4 m-0"><?php get_title() ?> (<?=date('d-m-Y', strtotime($start_date))?> - <?=date('d-m-Y',strtotime($end_date))?>)</p>
+        <div>
+            <a href="<?=routeTo('workshop/performance/detail', ['employee_id' => $employee->id, 'print' => true])?>" target="_blank" class="btn btn-success">Cetak</a>
+        </div>
     </div>
     <div class="card-body">
         <h4>Kehadiran</h4>
@@ -13,7 +15,6 @@
                         <th width="40px">No</th>
                         <th>Status</th>
                         <th>Tanggal</th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,7 +25,7 @@
                         <td><?=date('d-m-Y H:i', strtotime($presence->created_at))?></td>
                     </tr>
                     <?php endforeach ?>
-                    <?php if(empty($tasks)): ?>
+                    <?php if(empty($presences)): ?>
                     <tr>
                         <td colspan="3"><i>Data not Found!</i></td>
                     </tr>
@@ -33,7 +34,7 @@
             </table>
         </div>
 
-        <h4>Tasks</h4>
+        <h4 class="mt-4">Tasks</h4>
         <?php if($employee->record_type == 'REGULAR'): ?>
         <div class="table-responsive">
             <table class="table table-bordered table-item">
@@ -42,7 +43,6 @@
                         <th width="40px">No</th>
                         <th>Invoice</th>
                         <th>Tanggal</th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -73,14 +73,16 @@
                         <th width="40px">No</th>
                         <th>Inspeksi</th>
                         <th>Tanggal</th>
+                        <th>Nilai Faktur</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach($tasks as $index => $task): ?>
                     <tr>
                         <td><?=$index+1?></td>
-                        <td><?=$task->description?></td>
+                        <td><?=$task->inspection_code?> <?=$task->description ? '-'.$task->description : ''?></td>
                         <td><?=date('d-m-Y H:i', strtotime($task->created_at))?></td>
+                        <td>Rp. <?=number_format($task->final_price ?? 0)?></td>
                     </tr>
                     <?php endforeach ?>
                     <?php if(empty($tasks)): ?>

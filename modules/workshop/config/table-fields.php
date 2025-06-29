@@ -142,6 +142,14 @@ return [
             'label' => 'Status',
             'type' => 'options:APPROVE|DECLINE'
         ],
+        'start_at' => [
+            'label' => 'Start At',
+            'type' => 'datetime-local'
+        ],
+        'end_at' => [
+            'label' => 'End At',
+            'type' => 'datetime-local'
+        ],
         'attachment_url' => [
             'label' => 'Attachment',
             'type' => 'file'

@@ -22,19 +22,25 @@ $tasks = [];
 
 if($employee->record_type == 'MECHANIC')
 {
-    $tasks = $db->all('ws_services', [
-        'employee_id' => $employee_id
-    ]);
+    $db->query = "SELECT 
+        ws_services.*, 
+        ws_inspections.code inspection_code,
+        ws_invoices.final_price
+    FROM ws_services 
+    LEFT JOIN ws_invoices ON ws_invoices.inspection_id = ws_services.inspection_id 
+    LEFT JOIN ws_inspections ON ws_inspections.id = ws_services.inspection_id 
+    WHERE employee_id = $employee_id";
+    $tasks = $db->exec('all');
 }
 else
 {
     $tasks = $db->all('ws_invoices', [
-        'user_id' => $employee->user_id
+        'created_by' => $employee->user_id
     ]);
 }
 
 // page section
-$title = 'Performance Detail';
+$title = 'Performance ' . $employee->name;
 Page::setActive("workshop.performance.performance");
 Page::setTitle($title);
 Page::setModuleName($title);
@@ -52,4 +58,6 @@ Page::setBreadcrumbs([
     ]
 ]);
 
-return view('workshop/views/performance/detail', compact('error_msg','success_msg','old','employee','tasks','presences'));
+$view = isset($_GET['print']) ? 'workshop/views/performance/detail-print' : 'workshop/views/performance/detail';
+
+return view($view, compact('error_msg','success_msg','old','employee','tasks','presences','start_date','end_date'));

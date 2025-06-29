@@ -16,10 +16,11 @@ $db->query = "SELECT
             ws_employees.name,
             SUM(CASE WHEN ws_employee_presences.record_type = 'PRESENCE' THEN 1 ELSE 0 END) total_presence,
             SUM(CASE WHEN ws_employee_presences.record_type = 'LEAVE' THEN 1 ELSE 0 END) total_leave,
-            COUNT(ws_services.id)+COUNT(ws_invoices.id) total_task
+            COUNT(CASE WHEN ws_employees.record_type = 'MECHANIC' THEN ws_services.id ELSE ws_invoices.id END) total_task,
+            SUM(ws_invoices.final_price) total_transaction
           FROM ws_employees
           LEFT JOIN ws_services ON ws_services.employee_id = ws_employees.id AND ws_services.created_at BETWEEN '$start_date' AND '$end_date'
-          LEFT JOIN ws_invoices ON ws_invoices.created_by = ws_employees.user_id AND ws_invoices.created_at BETWEEN '$start_date' AND '$end_date'
+          LEFT JOIN ws_invoices ON (ws_invoices.created_by = ws_employees.user_id OR ws_invoices.inspection_id = ws_services.inspection_id) AND ws_invoices.created_at BETWEEN '$start_date' AND '$end_date'
           LEFT JOIN ws_employee_presences ON ws_employee_presences.employee_id = ws_employees.id AND ws_employee_presences.record_status = 'APPROVE' AND ws_employee_presences.created_at BETWEEN '$start_date' AND '$end_date'
           GROUP BY ws_employees.id";
 $employees = $db->exec('all');
