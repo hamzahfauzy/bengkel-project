@@ -73,23 +73,27 @@ body {
             <tr>
                 <th width="40px">No</th>
                 <th>Inspeksi</th>
+                <th>Kendaraan</th>
                 <th>Tanggal</th>
                 <th>Nilai Faktur</th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach($tasks as $index => $task): ?>
+            <?php $total = 0; foreach($tasks as $index => $task): $total += $task->final_price ?? 0; ?>
             <tr>
                 <td><?=$index+1?></td>
                 <td><?=$task->inspection_code?> <?=$task->description ? '-'.$task->description : ''?></td>
+                <td><?=$task->vehicle_name?></td>
                 <td><?=date('d-m-Y H:i', strtotime($task->created_at))?></td>
                 <td>Rp. <?=number_format($task->final_price ?? 0)?></td>
             </tr>
             <?php endforeach ?>
             <?php if(empty($tasks)): ?>
             <tr>
-                <td colspan="3"><i>Data not Found!</i></td>
+                <td colspan="5"><i>Data not Found!</i></td>
             </tr>
+            <?php else: ?>
+            <tr><td colspan="4">Total</td><td>Rp. <?=number_format($total)?></td></tr>
             <?php endif ?>
         </tbody>
     </table>

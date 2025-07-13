@@ -3,7 +3,7 @@
     <div class="card-header d-flex flex-grow-1 justify-content-between">
         <p class="h4 m-0"><?php get_title() ?> (<?=date('d-m-Y', strtotime($start_date))?> - <?=date('d-m-Y',strtotime($end_date))?>)</p>
         <div>
-            <a href="<?=routeTo('workshop/performance/detail', ['employee_id' => $employee->id, 'print' => true])?>" target="_blank" class="btn btn-success">Cetak</a>
+            <a href="<?=routeTo('workshop/performance/detail', ['employee_id' => $employee->id, 'print' => true, 'start_date' => date('Y-m-d', strtotime($start_date)), 'end_date' => date('Y-m-d',strtotime($end_date))])?>" target="_blank" class="btn btn-success">Cetak</a>
         </div>
     </div>
     <div class="card-body">
@@ -72,23 +72,27 @@
                     <tr>
                         <th width="40px">No</th>
                         <th>Inspeksi</th>
+                        <th>Kendaraan</th>
                         <th>Tanggal</th>
                         <th>Nilai Faktur</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach($tasks as $index => $task): ?>
+                    <?php $total = 0; foreach($tasks as $index => $task): $total += $task->final_price ?? 0; ?>
                     <tr>
                         <td><?=$index+1?></td>
                         <td><?=$task->inspection_code?> <?=$task->description ? '-'.$task->description : ''?></td>
+                        <td><?=$task->vehicle_name?></td>
                         <td><?=date('d-m-Y H:i', strtotime($task->created_at))?></td>
                         <td>Rp. <?=number_format($task->final_price ?? 0)?></td>
                     </tr>
                     <?php endforeach ?>
                     <?php if(empty($tasks)): ?>
                     <tr>
-                        <td colspan="3"><i>Data not Found!</i></td>
+                        <td colspan="5"><i>Data not Found!</i></td>
                     </tr>
+                    <?php else: ?>
+                    <tr><td colspan="4">Total</td><td>Rp. <?=number_format($total)?></td></tr>
                     <?php endif ?>
                 </tbody>
             </table>

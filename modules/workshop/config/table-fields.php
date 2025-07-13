@@ -50,7 +50,8 @@ return [
             'label' => 'Type',
             'type' => 'text'
         ],
-        'description'
+        'description',
+        'created_at'
     ],
     'ws_marketing_templates' => [
         'title',
