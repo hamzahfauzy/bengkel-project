@@ -17,11 +17,11 @@ if(Request::isMethod('POST'))
     if(empty($data['customer_id']))
     {
         // unset($data['customer_id'])
-        $customer = $db->insert('ws_customers', [
-            'name' => $_POST['customer_name']
-        ]);
+        // $customer = $db->insert('ws_customers', [
+        //     'name' => $_POST['customer_name']
+        // ]);
 
-        $data['customer_id'] = $customer->id;
+        // $data['customer_id'] = $customer->id;
     }
     $items = $_POST['items'];
     $data['total_item'] = count($items);

@@ -23,6 +23,7 @@ return [
     ],
     'price' => [
         'label' => 'Price',
-        'type' => 'number'
+        'type' => 'number',
+        'search' => 'ws_product_prices.amount'
     ],
 ];

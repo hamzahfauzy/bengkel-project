@@ -27,4 +27,9 @@ return [
     'tasks' => 'Tugas',
     'inspections' => 'Inspeksi',
     'dashboard' => 'Dashboard',
+    'global reports' => 'Laporan Global',
+    'service income' => 'Servis',
+    'outcome' => 'Pengeluaran',
+    'customer report' => 'Kustomer'
+
 ];

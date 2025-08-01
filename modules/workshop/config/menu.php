@@ -162,6 +162,11 @@ return [
         'icon'  => 'fa-fw fa-lg me-2 fa-solid fa-dollar-sign',
         'activeState' => [
             'workshop.ws_finance_journals',
+            'workshop.ws_global_reports',
+            'workshop.ws_service_income',
+            'workshop.ws_outcome',
+            'workshop.ws_customer_report'
+
         ],
         'items' => [
             // [
@@ -174,6 +179,26 @@ return [
                 'label' => 'workshop.menu.journals',
                 'route' => routeTo('crud/index',['table'=>'ws_finance_journals']),
                 'activeState' => 'workshop.ws_finance_journals'
+            ],
+            [
+                'label' => 'workshop.menu.global reports',
+                'route' => routeTo('workshop/finance/global-reports'),
+                'activeState' => 'workshop.ws_global_reports'
+            ],
+            [
+                'label' => 'workshop.menu.service income',
+                'route' => routeTo('workshop/finance/service-income'),
+                'activeState' => 'workshop.ws_service_income'
+            ],
+            [
+                'label' => 'workshop.menu.outcome',
+                'route' => routeTo('workshop/finance/outcome'),
+                'activeState' => 'workshop.ws_outcome'
+            ],
+            [
+                'label' => 'workshop.menu.customer report',
+                'route' => routeTo('workshop/finance/customer-report'),
+                'activeState' => 'workshop.ws_customer_report'
             ],
         ]
     ],
