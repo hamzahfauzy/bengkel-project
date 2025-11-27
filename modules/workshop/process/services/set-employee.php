@@ -5,6 +5,7 @@ use Core\Database;
 $db = new Database;
 $db->update('ws_services', [
     'employee_id' => $_POST['employee_id'],
+    'advisor_id' => $_POST['advisor_id'],
 ], [
     'id' => $_GET['id']
 ]);

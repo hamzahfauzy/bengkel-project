@@ -17,6 +17,10 @@ return [
             'class' => 'form-control'
         ]
     ],
+    'status' => [
+        'label' => 'Status',
+        'type' => 'options:LUNAS|TEMPO|HUTANG|KURANG|PIUTANG'
+    ],
     'description' => [
         'label' => 'Description',
         'type' => 'textarea',
@@ -24,9 +28,5 @@ return [
             'class' => 'form-control select2-search__field'
         ]
     ],
-    // 'status' => [
-    //     'label' => 'Status',
-    //     'type' => 'text'
-    // ],
     '_userstamp' => true
 ];

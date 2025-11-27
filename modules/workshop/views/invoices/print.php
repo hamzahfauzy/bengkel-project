@@ -44,11 +44,10 @@
                     <th>Qty</th>
                     <th>Satuan</th>
                     <th>Harga</th>
-                    <th>Diskon (%)</th>
                     <th>Diskon (Rp)</th>
                     <th>Sub Total</th>
                 </tr>
-                <?php $no = 1; $total_sparepart = 0; foreach($invoice->items as $item): if($item->product_type == 'SERVICE') continue; $total_sparepart+=$item->final_price; ?>
+                <?php $no = 1; $total_sparepart = 0; foreach($invoice->items as $item): if($item->product_type == 'SERVICE') continue; $total_sparepart+=$item->total_price; ?>
                 <tr>
                     <td><?=$no++?></td>
                     <td><?=$item->product_name?></td>
@@ -56,18 +55,17 @@
                     <td><?=$item->product_unit?></td>
                     <td>Rp. <?=number_format($item->base_price)?></td>
                     <td>Rp. <?=number_format($item->total_discount)?></td>
-                    <td>Rp. 0</td>
-                    <td>Rp. <?=number_format($item->final_price)?></td>
+                    <td>Rp. <?=number_format($item->total_price)?></td>
                 </tr>
                 <?php endforeach?>
                 <tr>
-                    <td colspan="7" align="right"><b>Total Spareparts</b></td>
+                    <td colspan="6" align="right"><b>Total Spareparts</b></td>
                     <td>Rp. <?=number_format($total_sparepart)?></td>
                 </tr>
                 <tr>
                     <td colspan="8"><h4 style="margin:0">SERVIS</h4></td>
                 </tr>
-                <?php $no = 1; $total_service = 0; foreach($invoice->items as $item): if($item->product_type == 'SPARE PART') continue; $total_service+=$item->final_price;?>
+                <?php $no = 1; $total_service = 0; foreach($invoice->items as $item): if($item->product_type == 'SPARE PART') continue; $total_service+=$item->total_price;?>
                 <tr>
                     <td><?=$no++?></td>
                     <td><?=$item->product_name?> <?= $item->vehicle_name ? '('.$item->vehicle_name.')' : ''?></td>
@@ -75,18 +73,17 @@
                     <td><?=$item->product_unit?></td>
                     <td>Rp. <?=number_format($item->base_price)?></td>
                     <td>Rp. <?=number_format($item->total_discount)?></td>
-                    <td>Rp. 0</td>
-                    <td>Rp. <?=number_format($item->final_price)?></td>
+                    <td>Rp. <?=number_format($item->total_price)?></td>
                 </tr>
                 <?php endforeach?>
                 <tr>
-                    <td colspan="7" align="right"><b>Total Repair</b></td>
+                    <td colspan="6" align="right"><b>Total Repair</b></td>
                     <td>Rp. <?=number_format($total_service)?></td>
                 </tr>
                 <tr>
-                    <td colspan="6" rowspan="4">
+                    <td colspan="5" rowspan="4">
                         <b>Terbilang : </b> <?= ucwords(terbilang($invoice->final_price))?> Rupiah<br>
-                        <b>Keterangan : </b> <?= nl2br($invoice->description ?? '') ?>
+                        <b>Rekomendasi Servis : </b> <?= nl2br($invoice->description ?? '') ?>
 
                         <div style="display: flex;justify-content:space-around;margin-top:25px;">
                             <p>Penerima,</p>
@@ -94,7 +91,7 @@
                         </div>
                     </td>
                     <td><b>Sub Total</b></td>
-                    <td>Rp. <?=number_format($invoice->total_price)?></td>
+                    <td>Rp. <?=number_format($total_service+$total_sparepart)?></td>
                 </tr>
                 <tr>
                     <td><b>Total Diskon</b></td>

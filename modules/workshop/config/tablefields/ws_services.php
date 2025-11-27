@@ -3,10 +3,14 @@
 return [
     'inspection_id' => [
         'label' => 'Kode Inspeksi',
-        'type' => 'options-obj:ws_inspections,id,code'
+        'type' => 'options-obj:ws_inspections,id,code',
     ],
     'employee_id' => [
         'label' => 'Karyawan',
+        'type' => 'options-obj:ws_employees,id,name'
+    ],
+    'advisor_id' => [
+        'label' => 'Service Advisor',
         'type' => 'options-obj:ws_employees,id,name'
     ],
     'vehicle_id' => [
@@ -15,7 +19,8 @@ return [
     ],
     'description' => [
         'label' => 'Deskripsi',
-        'type' => "text"
+        'type' => "text",
+        'search' => 'ws_services.description'
     ],
     'record_status' => [
         'label' => 'Status',

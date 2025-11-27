@@ -43,15 +43,18 @@ return [
     'ws_finance_journals' => [
         'code',
         'amount' => [
-            'label' => 'Amount',
+            'label' => 'Jumlah',
             'type' => 'number'
         ],
         'record_type' => [
-            'label' => 'Type',
-            'type' => 'text'
+            'label' => 'Tipe',
+            'type' => 'options:IN|OUT'
         ],
         'description',
-        'created_at'
+        'created_at' => [
+            'label' => 'Tanggal',
+            'type'  => 'datetime-local'
+        ]
     ],
     'ws_marketing_templates' => [
         'title',
@@ -131,7 +134,8 @@ return [
         // ],
         'final_price' => [
             'label' => 'Harga Akhir',
-            'type' => 'number'
+            'type' => 'number',
+            'search' => 'ws_invoice_items.final_price'
         ],
     ],
     'ws_employee_presences' => [

@@ -7,7 +7,8 @@ return [
     ],
     'name' => [
         'label' => 'Name',
-        'type' => 'text'
+        'type' => 'text',
+        'search' => 'ws_products.name'
     ],
     'description' => [
         'label' => 'Description',

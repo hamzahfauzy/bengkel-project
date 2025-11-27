@@ -13,6 +13,10 @@
                 <label for="" class="mb-2">Karyawan</label>
                 <?= \Core\Form::input('options-obj:ws_employees,id,name|record_type,MECHANIC', 'employee_id', ['class' => 'form-control']) ?>
             </div>
+            <div class="form-group mb-3">
+                <label for="" class="mb-2">Service Advisor</label>
+                <?= \Core\Form::input('options-obj:ws_employees,id,name|record_type,SERVICE ADVISOR', 'advisor_id', ['class' => 'form-control']) ?>
+            </div>
             <div class="form-group">
                 <button class="btn btn-primary">Submit</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

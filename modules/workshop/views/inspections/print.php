@@ -42,6 +42,20 @@
   </style>
 </head>
 <body>
+  <table align="center" border="1" cellspacing="0" cellpadding="5">
+    <tr>
+        <td width="150px">
+            <img src="<?= getSidebarLogo() ?>" alt="" width="120px">
+        </td>
+        <td style="vertical-align: middle;">
+            <h2 style="margin: 0;"><?= env('APP_BUSINESS_NAME')?></h2>
+            <p style="margin: 0;text-align:center;"><?= env('APP_BUSINESS_ADDRESS')?></p>
+        </td>
+        <td>
+            SPK
+        </td>
+    </tr>
+  </table>
   <h2>Laporan Pekerjaan Kendaraan</h2>
 
   <table>
@@ -51,7 +65,11 @@
     </tr>
     <tr>
       <td class="label">Kendaraan</td>
-      <td><?= $data->vehicle->name ?> - <?= $data->vehicle->police_number ?></td>
+      <td><?= $data->vehicle->name ?> - <?= $data->vehicle->police_number ?> (<?= $data->vehicle->merk .' / '. $data->vehicle->type ?>)</td>
+    </tr>
+    <tr>
+      <td class="label">Kustomer</td>
+      <td><?= $data->customer->name ?> - <?= $data->customer->phone ?> (<?= strip_tags($data->customer->address) ?>)</td>
     </tr>
     <tr>
       <td class="label">Tanggal Booking</td>
@@ -78,6 +96,14 @@
       <td><?= $data->km_out ?: '-' ?></td>
     </tr>
     <tr>
+      <td class="label">Indikator Bar BBM</td>
+      <td><?= $data->gasoline_indicator ?: '-' ?></td>
+    </tr>
+    <tr>
+      <td class="label">Kondisi Kendaraan</td>
+      <td><?= $data->vehicle_condition ?: '-' ?></td>
+    </tr>
+    <tr>
       <td class="label">Keluhan</td>
       <td class="multiline"><?= $data->complaint ?></td>
     </tr>
@@ -97,19 +123,43 @@
       <td class="label">Keterangan</td>
       <td><?= $data->keterangan ?></td>
     </tr>
+    <tr>
+      <td class="label">Catatan</td>
+      <td>
+        <ol>
+          <li>PKB ini wajib diisi dan ditanda tangani oleh masing-masing pihak</li>
+          <li>Mekanik hanya akan mengutamakan pekerjaan yang sudah tercantum dalam PKB</li>
+          <li>Konsumen tidak bisa komplain diluar pekerjaan yang sudah disepakati lewat PKB tersebut</li>
+          <li>Segala resiko diluar PKB diluar tanggung jawab bengkel</li>
+          <li>Konsumen memberikan ijin kepada bengkel membawa mobilnya untuk dicoba / dites dalam area</li>
+          <li>bengkel ataupun diluar area bengkel</li>
+          <li>PKB ini sebagai alat bukti pengambilan mobil konsumen selain STNK</li>
+        </ol>
+      </td>
+    </tr>
   </table>
 
   <br><br>
   <table style="width: 100%; text-align: center;">
     <tr>
-      <td>Dibuat oleh</td>
+      <td colspan="3">Diketahui oleh</td>
     </tr>
     <tr>
-      <td style="height: 60px;"></td>
-      <td></td>
+      <td colspan="3" style="height: 60px;"></td>
     </tr>
     <tr>
-      <td>(<?= $data->creator->name ?>)</td>
+      <td>
+        <b><?= $data->advisor?->name ?? $data->creator->name ?></b><br>
+        <?= $data->advisor ? 'Service Advisor' : 'Administrator' ?>
+      </td>
+      <td>
+        <b><?= $data->mechanic?->name ?></b><br>
+        Mekanik
+      </td>
+      <td>
+        <b><?= $data->customer->name ?></b><br>
+        Kustomer
+      </td>
     </tr>
   </table>
   <script>window.print()</script>

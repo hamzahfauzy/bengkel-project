@@ -17,7 +17,7 @@ if($filter)
 
 $where = $where ." ". $having;
 
-$query = "SELECT $this->table.*, ws_product_prices.amount price FROM $this->table LEFT JOIN ws_product_prices ON ws_product_prices.product_id = $this->table.id AND ws_product_prices.status = 'ACTIVE' $where";
+$query = "SELECT $this->table.*, ws_product_prices.amount price, ws_categories.name category_name FROM $this->table LEFT JOIN ws_categories ON ws_categories.id = $this->table.category_id LEFT JOIN ws_product_prices ON ws_product_prices.product_id = $this->table.id AND ws_product_prices.status = 'ACTIVE' $where";
 $this->db->query = $query . " ORDER BY ".$col_order." ".$order[0]['dir']." LIMIT $start,$length";
 $data  = $this->db->exec('all');
 

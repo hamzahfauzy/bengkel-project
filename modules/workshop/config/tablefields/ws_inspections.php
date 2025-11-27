@@ -41,6 +41,14 @@ return [
         'label' => 'KM Keluar',
         'type' => 'number'
     ],
+    'gasoline_indicator' => [
+        'label' => 'Indikator Bar BBM',
+        'type' => 'text'
+    ],
+    'vehicle_condition' => [
+        'label' => 'Catatan Kondisi Kendaraan',
+        'type' => 'textarea'
+    ],
     'complaint' => [
         'label' => 'Keluhan',
         'type' => 'textarea',

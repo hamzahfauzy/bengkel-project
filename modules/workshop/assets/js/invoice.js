@@ -139,12 +139,13 @@ $(document.body).on('change', '.price-input', function(){
     calculateTotalOrder()
 })
 
-$(document.body).on('change', '.discount-input', function(){
+$(document.body).on('keyup', '.discount-input', function(){
     var key = $(this).data('key')
     const index = items.findIndex(item => item.key == key);
     const item = items[index]
+    const value = $(this).val() && $(this).val() != "" ? $(this).val() : "0"
 
-    item.discount = parseFloat(cleanCurrencyFormat($(this).val()))
+    item.discount = parseFloat(cleanCurrencyFormat(value))
     item.total_price = (item.price * item.qty) - item.discount
     $('#price-'+key).html(format_number(item.total_price))
     calculateTotalOrder()

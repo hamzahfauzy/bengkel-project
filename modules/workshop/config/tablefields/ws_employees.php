@@ -15,6 +15,6 @@ return [
     ],
     'record_type' => [
         'label' => 'Type',
-        'type' => 'options:REGULAR|MECHANIC'
+        'type' => 'options:REGULAR|MECHANIC|SERVICE ADVISOR'
     ],
 ];
